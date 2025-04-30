@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block metaDescription %}
+<meta name="description" content="{{ all_meta_description_objs.last.text }}">
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/showcase/projects.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>{% trans 'Projects' %}</title>
+{% endblock %}
+
+{% block ShowcaseLink %}
+<a class="nav-link dropdown-toggle fw-bold active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{% trans 'Showcase' %}</a>
+{% endblock %}
+
+{% block mainBox %}
+<div id="ProjectsPageBox">
+    <h1>{% trans 'Portfolio' %}</h1>
+
+    <div id="ProjectsPageContentBox">
+        {% for project in all_project_objs %}
+        <div class="pb-5 ps-3 pe-3">
+            <a target="_blank" class="text-decoration-none" href="{{ project.get_absolute_url }}">
+                <div class="card">
+                    <div class="card-visual-box">
+                        <img class="card-visual" width="100%" style="object-fit: cover; border-radius: 0px;" src="{{ project.thumbnail_picture.url }}" loading="lazy" alt="{{ project.thumbnail_picture_alt }}">
+                    </div>
+
+                    <div class="card-body">
+                        <h4 class="card-title text-center" style="margin-bottom: 0;">{{ project.title }}</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

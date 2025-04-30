@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+<title>{{ all_brand_identity_objs.last.brand_name }} - {{ all_brand_identity_objs.last.slogan }}</title>
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/pages/unsubscribe_success.css' %}">
+{% endblock %}
+
+{% block mainBox %}
+<div id="UnsubscribeSuccessPageBox">
+    <div id="UnsubscribeSuccessPageContentBox">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <img src="{{ all_brand_identity_objs.last.logo.url }}" style="width: 100px; height:100px;" class="rounded float-start" alt="{{ all_brand_identity_objs.last.logo_alt }}">
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="mt-4">
+                        <h2 class="mb-4">{% trans 'Unsubscription Successfull!' %}</h2>
+                        <p class="mb-4">{% trans "You've successfully unsubscribed." %}</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

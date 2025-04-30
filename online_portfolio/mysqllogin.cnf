@@ -1,0 +1,10 @@
+[client]
+database = online_portfolio
+host = localhost
+user = testuser1
+password = 'Password12345!'
+default-character-set = utf8
+loose-local-infile=0
+
+[mysql]
+local-infile=0

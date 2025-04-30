@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+<title>{% trans "Profile" %}</title>
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/accountportal/profile.css' %}">
+{% endblock %}
+
+{% block mainBox %}
+<div id="ProfilePageBox">
+    <div id="ProfileUpdateFormBox">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-10 col-lg-8 mb-5">
+                    <div class="BackButton">
+                        <a type="button" target="_self" class="btn btn-danger btn-lg" href="{% url 'dashboard' %}">{% trans 'Back' %}</a>
+                    </div>
+                </div>
+            </div>
+
+            {% if user.profile.starter_deal and user.profile.is_starter_deal_paid == "n" %}
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-10 col-lg-8 mb-5">
+                    <div class="mt-4">
+                        <h3 class="mb-4">{% trans "Starter Deal" %}</h3>
+                    </div>
+
+                    <a target="_blank" id="InitialDeal" class="text-decoration-none" style="float:left;" href="{{ user.profile.starter_deal.get_absolute_url }}">
+                        <div class="card" style="width: 100%; max-width: 300px;">
+                            <div class="card-visual-box">
+                                <img class="card-visual" width="100%" style="object-fit: cover;" src="{{ user.profile.starter_deal.thumbnail_picture.url }}" alt="{{ user.profile.starter_deal.thumbnail_picture_alt }}">
+                            </div>
+
+                            <div class="card-body">
+                                <h4 class="card-title text-center">{% trans "Buy" %}</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if user.profile.deals_awaiting_payment|length > 0 %}
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-10 col-lg-8 mb-5">
+                    <div class="mt-4">
+                        <h3 class="mb-4">{% trans "Deals Awaiting Payment" %}</h3>
+                    </div>
+
+                    {% if deals_awaiting_payment %}
+                    {% for deal in deals_awaiting_payment %}
+                    <a target="_blank" class="DealAwaitingForPayment text-decoration-none" style="float:left;" href="{{ deal.get_absolute_url }}">
+                        <div class="card" style="width: 100%; max-width: 300px;">
+                            <div class="card-visual-box">
+                                <img class="card-visual" width="100%" style="object-fit: cover;" src="{{ deal.thumbnail_picture.url }}" class="card-img-top" alt="{{ deal.thumbnail_picture_alt }}">
+                            </div>
+
+                            <div class="card-body">
+                                <h4 class="card-title text-center">{% trans "Buy" %}</h4>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                    {% endif %}
+                </div>    
+            </div>
+            {% endif %}
+
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    <img src="{{ user.profile.image.url }}" style="width: 120px; height:120px; object-fit:cover;" class="rounded-circle account-img float-start border border-3" alt="Profile Picture">
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    <div class="mt-4">
+                        <h2 class="mb-4">{% trans "Profile Info" %}</h2>
+                    </div>
+                    
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label" for="id_image">{% trans "Profile Picture" %}</label>
+                            <input id="id_image" class="form-control" type="file" name="image" accept="image/*">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="id_first_name">{% trans "First Name" %}</label>
+                            <input class="form-control" type="text" name="first_name" maxlength="250" id="id_first_name" value="{{ user.first_name }}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="id_last_name">{% trans "Last Name" %}</label>
+                            <input class="form-control" type="text" name="last_name" maxlength="250" id="id_first_name" value="{{ user.last_name }}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="id_username">{% trans "Username" %}</label>
+                            <input id="id_username" class="form-control" type="text" name="username" value="{{ user.username }}" maxlength="150" required>                        
+                            <span class="helptext text-muted">{% trans "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only." %}</span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="id_email">{% trans "Email" %}</label>
+                            <input id="id_email" class="form-control" type="email" name="email" value="{{ user.email }}" maxlength="320" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="id_phone_number">{% trans "Phone Number" %}</label>
+                            <input id="id_phone_number" class="form-control" type="tel" name="phone_number" value="{{ user.profile.phone_number }}" maxlength="20">
+                            <span class="helptext text-muted">{% trans "Please enter a valid phone number, including country code (e.g. +1 for Canada or USA)" %}</span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="id_date_of_birth">{% trans "Date of Birth" %}</label>
+                            <input id="id_date_of_birth" class="form-control" type="date" name="date_of_birth" value="{{ user.profile.date_of_birth.year }}-{% if user.profile.date_of_birth.month >= 10 %}{{ user.profile.date_of_birth.month }}{% else %}0{{ user.profile.date_of_birth.month }}{% endif %}-{% if user.profile.date_of_birth.day >= 10 %}{{ user.profile.date_of_birth.day }}{% else %}0{{ user.profile.date_of_birth.day }}{% endif %}" maxlength="50">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="id_company_name">{% trans "Company Name" %}</label>    
+                            <input id="id_company_name" class="form-control" type="text" name="company_name" value="{{ user.profile.company_name }}" maxlength="255">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="country" class="form-label">{% trans "Country of Residence" %}</label>
+                            <select class="form-select" id="id_country" name="country">
+                                <option value="{{ user.profile.country }}">{{ user.profile.get_country_display }}</option>
+                                {% for code, name in COUNTRY_CHOICES %}
+                                    {% if code != "None" %}
+                                    <option value="{{ code }}">{{ name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3" style="display: block; overflow: hidden;">
+                            <button type="button" class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">{% trans "Delete" %}</button>
+                            <button type="submit" name="updateProfileButton" class="btn btn-primary btn-lg float-end">{% trans "Update" %}</button>
+                            <!-- Delete Confirmation Modal -->
+                            <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="deleteConfirmModalLabel">{% trans "Confirm Delete" %}</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>{% trans "Are you sure you want to delete your account?" %}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+                                            <button type="submit" name="deleteAccountButton" class="btn btn-danger">{% trans "Delete Account" %}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <p class="mt-3"><a href="{% url 'password_reset' %}">{% trans "Password Reset" %}</a></p>
+
+                    {% if is_profile_page_success_message_exists or is_profile_page_error_message_exists %}
+                    {% include 'shared/messages.html' %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+/* MEDIA QUERIES ***************************/
+
+//////////////////////////////
+
+// PHONE
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-phone) {
+
+    #PostDetailPageBox {
+        @include mixins.standard-page-box-style("BlogPostDetail");
+    }
+
+    #PostDetailPageContentBox {
+		@include mixins.standard-detail-content-box-style("BlogPostDetail");
+	}
+    
+    #PostContentBox, #PostShareBox, #PostLikeBox {
+        @include mixins.block-box;
+    }
+
+    .fa-heart:hover {
+        cursor: pointer;
+    }
+
+    .x-in-main {
+        color: vars.$brand-color-primary;
+    }
+
+    .facebook-in-main {
+        color: vars.$social-media-button-color-facebook;
+    }
+
+    .facebook-in-main, .x-in-main {
+        width: 26px;
+        height: 26px;
+        margin: 2px;
+        float: left;
+        display: block;
+    }
+}
+
+
+//////////////////////////////
+
+// TABLET
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-tablet) {}
+
+
+
+//////////////////////////////
+
+// DESKTOP
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-desktop) {}

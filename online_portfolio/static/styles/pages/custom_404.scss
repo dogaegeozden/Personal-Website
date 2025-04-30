@@ -1,0 +1,32 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+//////////////////////////////
+
+// MEDIA QUERIES
+
+//////////////////////////////
+ 
+@media (min-width: vars.$break-point-phone) {
+
+    #Custom404PageBox {
+		@include mixins.standard-page-box-style("404");
+	}
+
+    #Custom404ContentBox {
+        @include mixins.standard-content-box-style("404");
+    }
+    
+}
+
+@media (min-width: vars.$break-point-tablet) {}
+@media (min-width: vars.$break-point-desktop) {}
+

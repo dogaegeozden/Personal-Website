@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block metaDescription %}
+<meta name="description" content="{{ all_meta_description_objs.last.text }}">
+{% endblock %}
+
+{% block title %}
+<title>{% trans 'Blog' %}</title>
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/blog/blog.css' %}">
+{% endblock %}
+
+{% block mainBox %}
+<div id="BlogPageBox">
+
+    <h1>{% trans 'BLOG' %}</h1>
+
+    {% if all_blog_post_objs.first.title %}
+    <div id="BlogContentBox">
+
+        {% for post in all_blog_post_objs %}
+        <div class="PostBox mb-5">
+            <h2 class="text-center">{{ post.title }}</h2>
+            <p class="text-center text-muted">Published on {{ post.date }}</p>
+
+            {% if post.image %}                    
+            <img src="{{ post.image.url }}" class="img-fluid mb-3" width="100%" alt="{{ post.alt }}">
+            {% elif post.video %}
+            <video width="100%" height="auto" class="mb-3" controls>
+                <source src="{{ post.video.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            {% elif post.youtube_url %}
+            <div class="embed-responsive embed-responsive-16by9 mb-3" width="100%">
+                <iframe class="embed-responsive-item" src="{{ post.youtube_url }}" allowfullscreen></iframe>
+            </div>
+            {% endif %}
+
+            <p>{{ post.para1}}</p>
+
+            <a href="{{ post.get_absolute_url }}" class="btn btn-primary btn-block">Read More</a>
+        </div>
+        {% endfor %}
+
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

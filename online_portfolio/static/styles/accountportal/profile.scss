@@ -1,0 +1,66 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+// MEDIA QUERIES
+
+//////////////////////////////
+
+// PHONE
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-phone) {
+
+    #ProfilePageBox {
+		@include mixins.accountportal-page-box-style;
+	}
+
+    #ProfileUpdateFormBox {
+        @include mixins.accountportal-content-box-style;
+    }
+
+    .card {
+        border-radius: 7px;
+    }
+
+    .card-visual-box {
+        @include mixins.card-visual-box;
+    }
+
+    .card-visual {
+        @include mixins.card-visual;
+    }
+
+    .DealAwaitingForPayment {
+        margin-bottom: 10px;
+    }
+}
+
+//////////////////////////////
+
+// TABLET
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-tablet) {
+
+    .DealAwaitingForPayment {
+        margin-right: 10px;
+    }
+}
+
+//////////////////////////////
+
+// DESKTOP
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-desktop) {}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block metaDescription %}
+<meta name="description" content="{{ all_meta_description_objs.last.text }}">
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/legalsuite/terms_and_conditions_agreements.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>{% trans 'Terms and Conditions' %}</title>
+{% endblock %}
+
+{% block mainBox %}
+<div id="TermsAndConditionsAgreementsPageBox">
+
+    <h1>{% trans 'Terms and Conditions' %}</h1>
+
+    <div id="TermsAndConditionsAgreementsContentBox">
+        <div class="accordion" id="TermsAndConditionsAccordion">
+            {% for terms_and_conditions in  all_terms_and_conditions_agreement_objs %}
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#Collapse{{terms_and_conditions.id}}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="{{terms_and_conditions.id}}">
+                    {{ terms_and_conditions.title }}
+                    </button>
+                </h2>
+                <div id="Collapse{{terms_and_conditions.id}}" class="accordion-collapse collapse show" data-bs-parent="#TermsAndConditionsAccordion">
+                    <div class="accordion-body">
+                        <p class="text-muted float-end">{{terms_and_conditions.create_time}}</p>
+                        <a class="text-black" href="{{ terms_and_conditions.get_absolute_url }}"><h5>{{ terms_and_conditions.title }}</h5></a>
+                        <p><span class="fw-bolder">Effective Date: </span>{{ terms_and_conditions.effective_date }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

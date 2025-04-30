@@ -1,0 +1,70 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+/* MEDIA QUERIES ***************************/
+
+//////////////////////////////
+
+// PHONE
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-phone) {
+
+    #SuccessStoriesPageBox {
+	    @include mixins.standard-page-box-style('SuccessStories');
+	}
+
+    #SuccessStoriesContentBox {
+        @include mixins.standard-content-box-style('SuccessStories');
+    }
+
+    .bi-link-45deg, .bi-trash {
+        width: 19px;
+        height: 19px;
+    }
+
+    .bi-pen {
+        width: 25px;
+        height: 25px;
+        color: black;
+    }
+
+    .bi-link-45deg {
+        width: 20px;
+        height: 20px;
+        color: black;
+    }
+    
+    .card {
+        border-radius: 7px;
+    }
+}
+
+
+
+//////////////////////////////
+
+// TABLET
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-tablet) {}
+
+
+
+//////////////////////////////
+
+// DESKTOP/LAPTOP
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-desktop) {}

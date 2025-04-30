@@ -1,0 +1,49 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+/* MEDIA QUERIES ***************************/
+
+//////////////////////////////
+
+// PHONE
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-phone) {
+
+	#CertificationsPageBox {
+		@include mixins.standard-page-box-style("Certifications");
+	}
+
+	#CertificationsWallBox {
+		@include mixins.grid-content-box-style("Certifications");
+	}
+}
+
+
+
+//////////////////////////////
+
+// TABLET
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-tablet) {}
+
+
+
+//////////////////////////////
+
+// DESKTOP
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-desktop) {}

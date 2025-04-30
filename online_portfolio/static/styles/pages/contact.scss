@@ -1,0 +1,62 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+/* MEDIA QUERIES ***************************/
+
+//////////////////////////////
+
+// PHONE
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-phone) {
+    
+    #ContactPageBox {
+        @include mixins.standard-page-box-style("Contact");
+    }
+
+    #ContactPageContentBox {
+        @include mixins.standard-content-box-style("Contact");
+    }
+
+    #ContactPageMainImage {
+        border-radius: 15px;
+    }
+}
+
+
+
+//////////////////////////////
+
+// TABLET
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-tablet) {}
+
+
+
+//////////////////////////////
+
+// DESKTOP/LAPTOP
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-desktop) {
+    
+    #PictureBox, #FormBox {
+        float: left;
+    }
+
+    #FormBox {
+        padding: 50px;
+    }
+}

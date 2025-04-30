@@ -1,0 +1,55 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+/* MEDIA QUERIES ***************************/
+
+//////////////////////////////
+
+// PHONE
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-phone) {
+    
+    #BlogPageBox {
+        @include mixins.standard-page-box-style("Blog");
+    }
+
+    #BlogContentBox {
+        @include mixins.standard-content-box-style("Blog");
+    }
+
+	.PostBox {
+		@include mixins.block-box;
+		max-width: 1400px;
+		margin: auto;
+	}
+}
+
+
+
+//////////////////////////////
+
+// TABLET
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-tablet) {}
+
+
+
+//////////////////////////////
+
+// DESKTOP/LAPTOP
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-desktop) {}

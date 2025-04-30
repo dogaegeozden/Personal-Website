@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block metaDescription %}
+<meta name="description" content="{{ all_meta_description_objs.last.text }}">
+{% endblock %}
+
+{% block title %}
+<title>{{ all_brand_identity_objs.last.brand_name }} - {{ all_brand_identity_objs.last.slogan }}</title>
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/pages/custom_404.css' %}" type="text/css">
+{% endblock %}
+
+{% block mainBox %}
+<div id="Custom404PageBox">
+    <div id="Custom404ContentBox">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <img src="{{ all_brand_identity_objs.last.logo.url }}" style="width: 100px; height:100px;" class="rounded float-start" alt="Logo">    
+                </div>
+            </div>
+    
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="mt-4">
+                        <h2 class="mb-4">{% trans 'PAGE NOT FOUND' %} (404)</h2>
+                        <p>{% trans "Page you are looking for doesn't exists." %}</p>
+                        <a href="{% url 'home'%}" class="btn btn-danger btn-lg">{% trans 'Back to home' %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

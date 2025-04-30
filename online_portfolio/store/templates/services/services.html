@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block metaDescription %}
+<meta name="description" content="{{ all_meta_description_objs.last.text }}">
+{% endblock %}
+
+{% block title %}
+<title>{% trans 'Services' %}</title>
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/store/services.css' %}">
+{% endblock %}
+
+{% block StoreLink %}
+<a class="nav-link dropdown-toggle fw-bold active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{% trans 'Store' %}</a>
+{% endblock %}
+
+{% block mainBox %}
+<div id="ServicesPageBox">
+    
+    <h1>{% trans 'Services' %}</h1>
+
+    <div id="ServicesPageContentBox">
+
+        <div id="ServicesIntroductionBox">
+            <div id="VideoBox">
+                {% if all_services_page_main_content_objs.last.video %}
+                <video width="100%" height="auto" controls>
+                    <source src="{{ all_services_page_main_content_objs.last.video.url }}" type="video/mp4">
+                    {% trans 'Your browser does not support the video tag.' %}
+                </video>
+                {% endif %}
+            </div>
+
+            <div id="TextBox">
+                {% if all_services_page_main_content_objs.last.title %}
+                <h2>{{ all_services_page_main_content_objs.last.title }}</h2>
+                {% endif %}
+
+                <p>{{ all_services_page_main_content_objs.last.para1 }}</p>
+
+                <ul class="list-group">
+                    {% if all_services_page_main_content_objs.last.list_item1 %}
+                    <li class="list-item">{{ all_services_page_main_content_objs.last.list_item1 }}</li>
+                    {% endif %}
+                    {% if all_services_page_main_content_objs.last.list_item2 %}
+                    <li class="list-item">{{ all_services_page_main_content_objs.last.list_item2 }}</li>
+                    {% endif %}
+                    {% if all_services_page_main_content_objs.last.list_item3 %}
+                    <li class="list-item">{{ all_services_page_main_content_objs.last.list_item3 }}</li>
+                    {% endif %}
+                    {% if all_services_page_main_content_objs.last.list_item4 %}
+                    <li class="list-item">{{ all_services_page_main_content_objs.last.list_item4 }}</li>
+                    {% endif %}
+                    {% if all_services_page_main_content_objs.last.list_item5 %}
+                    <li class="list-item">{{ all_services_page_main_content_objs.last.list_item5 }}</li>
+                    {% endif %}
+                    {% if all_services_page_main_content_objs.last.list_item6 %}
+                    <li class="list-item">{{ all_services_page_main_content_objs.last.list_item6 }}</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+
+        <div id="CardBox">
+            {% for service in all_service_objs %}
+            <div class="card">
+                <a class="CardLink" href="{{ service.get_absolute_url }}">
+                    <div class="InnerCardBox">
+                        <div class="CardImageBox">                    
+                            <img src="{{ service.thumbnail_picture.url }}" alt="{{ service.thumbnail_pic_alt }}" loading="lazy" style="width:100%; object-fit: contain;">
+                        </div>
+                        
+                        <div class="CardTextBox">
+                            <h3>{{ service.title }}</h3>
+                            <p>{{ service.call_to_action_sentence }}</p>  
+                        </div>
+                    </div>
+                </a>
+
+                <p><a target="_blank" href="{{ service.get_absolute_url }}"><button>{% trans 'Details' %}</button></a></p>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

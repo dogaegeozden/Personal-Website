@@ -1,0 +1,73 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+ 
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+/* MEDIA QUERIES ***************************/
+
+//////////////////////////////
+
+// PHONE
+
+//////////////////////////////
+ 
+@media (min-width: vars.$break-point-phone) {
+
+    #DashboardPageBox {
+        @include mixins.accountportal-page-box-style;
+	}
+
+    #DashboardContentBox {
+        @include mixins.accountportal-content-box-style;
+        max-width: 900px;
+    }
+
+    #ProfilePicture {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .ActionDiv{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background-color: vars.$brand-color-tertiary;
+        padding: 15px 12px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); 
+    }
+
+    .ActionDiv > p {
+        margin-bottom: 0;
+    }
+
+    #OperationsBox .ActionDiv:last-of-type {
+        margin-bottom: 0px;
+    }
+}
+
+
+
+//////////////////////////////
+
+// TABLET
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-tablet) {}
+
+
+
+//////////////////////////////
+
+// DESKTOP
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-desktop) {}

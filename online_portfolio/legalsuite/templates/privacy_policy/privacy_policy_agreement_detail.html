@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block metaDescription %}
+<meta name="description" content="{{ all_meta_description_objs.last.text }}">
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/legalsuite/privacy_policy_agreement_detail.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>{{ privacy_policy_detail.title }}</title>
+{% endblock %}
+
+{% block mainBox %}
+<div id="PrivacyPolicyDetailPageBox">
+    
+    <h1 class="text-uppercase">{{ privacy_policy_detail.title }}</h1>
+    
+    <div id="PrivacyPolicyDetailContentBox">
+
+        {% if privacy_policy_detail.effective_date %}
+        <p class="text-muted">Effective Date: {{ privacy_policy_detail.effective_date }}</p>
+        {% endif %}
+
+        <section class="my-5" id="TableOfContents">
+            <ol class="list-group">
+                {% for section in all_privacy_policy_section_objs %}
+                <li><a href="#{{section.title}}" classs="text-decoration-none">{{section.title}}</a></li>
+                {% endfor %}
+            </ol>
+        </section>
+
+        {% for section in all_privacy_policy_section_objs %}
+        <section class="my-5" id="{{ section.title }}">
+            <h2>{{ section.title }}</h2>
+            <p>{{ section.text }}</p>
+
+            <ul class="list-group">
+                {% if section.list_item_1 %}
+                <li>{{ section.list_item_1 }}</li>
+                {% endif %}
+                {% if section.list_item_2 %}
+                <li>{{ section.list_item_2 }}</li>
+                {% endif %}
+                {% if section.list_item_3 %}
+                <li>{{ section.list_item_3 }}</li>
+                {% endif %}
+                {% if section.list_item_4 %}
+                <li>{{ section.list_item_4 }}</li>
+                {% endif %}
+                {% if section.list_item_5 %}
+                <li>{{ section.list_item_5 }}</li>
+                {% endif %}
+                {% if section.list_item_6 %}
+                <li>{{ section.list_item_6 }}</li>
+                {% endif %}
+                {% if section.list_item_7 %}
+                <li>{{ section.list_item_7 }}</li>
+                {% endif %}
+                {% if section.list_item_8 %}
+                <li>{{ section.list_item_8 }}</li>
+                {% endif %}
+                {% if section.list_item_9 %}
+                <li>{{ section.list_item_9 }}</li>
+                {% endif %}
+                {% if section.list_item_10 %}
+                <li>{{ section.list_item_10 }}</li>
+                {% endif %}
+            </ul>
+        </section>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

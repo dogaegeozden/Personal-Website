@@ -1,0 +1,122 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+//////////////////////////////
+
+// GLOBAL STYLES
+
+//////////////////////////////
+
+#ProfilePic {
+	border-radius: 15px;
+}
+
+.ToolIcon {
+	width: 50px;
+	height: 50px;
+	margin: 5px;
+	transition: transform 0.2s ease;
+	border-radius: 0px;
+}
+
+.ToolIcon:hover {
+	transform: scale(1.2); /* Increase the scale factor as needed */
+}
+
+
+
+/* MEDIA QUERIES ***************************/
+
+//////////////////////////////
+
+// PHONE
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-phone) {
+
+	#HomePageBox {
+		@include mixins.standard-page-box-style("Home");
+	}
+
+	#HomePageContentBox {
+		@include mixins.standard-content-box-style("Home");
+	}
+
+	#HeroSection {
+		@include mixins.hero-section;
+	}
+
+	#HSTextContent {
+		@include mixins.block-box;
+		max-width: 1200px;
+		float: right;
+	}
+
+	#BioBox, #Interests {
+		@include mixins.block-box;
+		margin-bottom: 75px;
+	}
+
+	#BioPicBox {
+		margin-bottom: 30px;
+	}
+}
+
+
+
+//////////////////////////////
+
+// TABLET
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-tablet) {
+	
+	#BioPicBox, #BioTextBox {
+		float: left;
+	}
+	
+	#BioPicBox {
+		margin-bottom: 70px;
+	}
+
+	#BioBox, #Interests {
+		margin-bottom: 100px;
+	}
+
+	.InterestBox {
+		margin-bottom: 50px;
+	}
+}
+
+
+
+//////////////////////////////
+
+// DESKTOP
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-desktop) {
+
+	#BioTextBox {
+		padding: 50px;
+	}
+
+	#BioPicBox {
+		margin-bottom: 0px;
+	}
+
+	.InterestBox {
+		margin-bottom: 0px;
+	}
+}

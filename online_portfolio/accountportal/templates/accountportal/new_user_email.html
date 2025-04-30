@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Doga Ege Ozden: Your Account Has Been Created!</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f4f4f4;
+                color: #333;
+                margin: 0;
+                padding: 0;
+            }
+            .email-container {
+                max-width: 600px;
+                margin: 20px auto;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h1 {
+                color: #007BFF;
+            }
+            p {
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="email-container">
+            <h1>Account Information</h1>
+
+            {% if profile.user.username %}
+            <p><strong>Username: </strong>{{ profile.user.username }}</p>
+            {% endif %}
+            {% if profile.user.email %}
+            <p><strong>Email Address: </strong>{{ profile.user.email }}</p>
+            {% endif %}
+            <br>
+
+            <h2>Further Information</h2>
+            <p>Thank you for choosing us. We're excited to have you as part of our community and look forward to helping you achieve your goals.</p>
+            <p>You can reset your password using the following link.</p>
+            <p><strong>Password Reset Link: </strong><a href="https://www.dogaegeozden.com/password-reset/" target="_blank">https://www.dogaegeozden.com/password-reset/</a></p>
+            <br>
+            <p>This email has been sent by www.dogaegeozden.com</p>
+        </div>
+    </body>
+</html>

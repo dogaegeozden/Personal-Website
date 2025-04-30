@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block metaDescription %}
+<meta name="description" content="{{ service.meta_description }}">
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/store/service_detail.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>{{ service.title }}</title>
+{% endblock %}
+
+{% block StoreLink %}
+<a class="nav-link dropdown-toggle fw-bold active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{% trans 'Store' %}</a>
+{% endblock %}
+
+{% block mainBox %}
+<div id="ServiceDetailPageBox">
+
+    <h1>{{ service.title }}</h1>
+
+    <div id="ServiceDetailContentBox">
+
+        {% if service.short_summary %}
+        <div id="ServiceOverViewBox">
+            
+            <div id="ServiceSummaryBox">
+                <p id="ShortSummary">{{ service.short_summary }}</p>
+                
+                <div class="accordion" id="InclusionAccordion">
+                    {% for inclusion in all_service_inclusion_objs %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{inclusion.id}}" aria-expanded="false" aria-controls="collapse{{inclusion.id}}">
+                                {{ inclusion.title }}
+                            </button>
+                        </h2>
+                        <div id="collapse{{inclusion.id}}" class="accordion-collapse collapse" data-bs-parent="#InclusionAccordion">
+                            <div class="accordion-body">
+                                <p>{{ inclusion.text }}</p>
+                            </div>
+                        </div>
+                    </div>                    
+                    {% endfor %}
+                  </div>
+            </div>
+
+            <div id="ServiceInquiryFormBox">
+                <form method="POST" action="{% url 'service-detail' service.slug %}">{% csrf_token %}
+                    <div class="mb-3">
+                        <h2>{% trans 'What are you waiting for?' %}</h2>
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select" id="id_service_choice" name="service_choice" disabled hidden required>
+                            <option value="{{ service.title }}">{{ service.title }}</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_name" class="col-form-label fw-bold">{% trans 'Name' %}</label>
+                        <input type="text" class="form-control" id="id_name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_email" class="col-form-label fw-bold">{% trans 'Email' %}</label>
+                        <input type="text" class="form-control" id="id_email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_phone_number" class="col-form-label fw-bold">{% trans 'Phone Number' %}</label>
+                        <input type="tel" class="form-control" id="id_phone_number" name="phone_number">
+                        <span class="helptext text-muted">{% trans 'Please enter a valid phone number, including country code (e.g. +1 for Canada or USA)' %}</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_project_details" class="col-form-label fw-bold">{% trans 'Project Details' %}</label>
+                        <textarea class="form-control" id="id_project_details" name="project_details" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        {{ service_inquiry_form.captcha }}
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-lg" name="submitServiceInquiryBtn">{% trans 'Submit' %}</button>
+                    </div>
+                </form>
+                {% if is_service_detail_page_success_message_exists or is_service_detail_page_error_message_exists %}
+                <div style="float: left; width: 100%;">
+                    {% include 'shared/messages.html' %}
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+        {% endif %}
+
+        {% if all_service_process_step_objs %}
+        <div id="ProcessBox">
+            <div id="ProcessIntroBox">
+                <h5 id="ProcessBoxMainMiniTitle" class="MiniTitle">Process</h5>
+                <h2 id="ProcessBoxMainTitle">Our {{service.title }} Service Process</h2>
+            </div>
+
+            {% for step in all_service_process_step_objs %}
+            <div class="StepBox {% if step.step_number|divisibleby:2 %}StepEven{% else %}StepOdd{% endif %}">
+                <div class="StepImageBox">
+                    <img class="StepImage" src="{{step.image.url}}" alt="{{ step.alt }}" loading="lazy" />
+                </div>
+                <div class="StepTextBox">
+                    <h5 class="MiniTitle">Step {{step.step_number}}</h5>
+                    <h3>{{step.title}}</h3>
+                    <p>{{step.text}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+

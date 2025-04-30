@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block metaDescription %}
+<meta name="description" content="{{ all_login_page_meta_descriptions.last.text }}">
+{% endblock %}
+
+{% block title %}
+<title>{% trans 'Login' %}</title>
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/accountportal/login.css' %}">
+{% endblock %}
+
+{% block mainBox %}
+<div id="LoginPageBox">
+    <div id="LoginFormBox">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <img src="{{ all_brand_identity_objs.last.logo.url }}" style="width: 100px; height:100px;" class="rounded float-start" alt="{{ all_brand_identity_objs.last.logo_alt }}">
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <form method="post" action="." class="mt-4">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_username" class="form-label">{% trans 'Username' %}</label>
+                            <input type="text" name="username" id="id_username" maxlength="150" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_password" class="form-label">{% trans 'Password' %}</label>
+                            <input type="password" name="password" autocomplete="current-password" id="id_password" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            {{ login_form.captcha }}
+                        </div>
+                        <div>
+                            <button type="submit" name="loginBtn" class="btn btn-primary btn-lg">{% trans 'Login' %}</button>
+                            <p class="mt-3"><a href="{% url 'password_reset' %}">{% trans 'Lost password?' %}</a></p>
+                        </div>
+                    </form>
+                    {% if is_login_page_success_message_exists or is_login_page_error_message_exists %}
+                    {% include 'shared/messages.html' %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

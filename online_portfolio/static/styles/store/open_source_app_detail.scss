@@ -1,0 +1,90 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+/* MEDIA QUERIES ***************************/
+
+//////////////////////////////
+
+// PHONE
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-phone) {
+
+    #OpenSourceAppDetailPageBox {
+        @include mixins.standard-page-box-style("OpenSourceAppDetail");
+    }
+
+    #OpenSourceAppDetailPageContentBox {
+        @include mixins.standard-detail-content-box-style("OpenSourceAppDetail");
+    }
+
+    #MainSection p {
+        text-align: justify;
+    }
+
+    .ContentSectionImage {
+        width: 100%;
+    }
+
+    .ContentSection {
+        display: block;
+        margin: 70px auto;
+    }
+
+    .CSTextBox h2 {
+        text-align: center;
+    }
+
+    .CSTextBox p {
+        text-align: justify;
+    }
+
+    .bi-github {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+
+
+//////////////////////////////
+
+// TABLET
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-tablet) {
+
+    #MainSection p, .CSTextBox h2, .CSTextBox p {
+        text-align: left;
+    }
+
+    .CSTextBox {
+        padding-right: 20px;
+    }
+}
+
+
+
+//////////////////////////////
+
+// DESKTOP
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-desktop) {
+
+    .CSTextBox {
+        padding-right: 50px;
+    }
+}
+

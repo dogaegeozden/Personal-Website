@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block metaDescription %}
+<meta name="description" content="{{ all_meta_description_objs.last.text }}">
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/legalsuite/privacy_policy_agreements.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>{% trans 'Privacy Policy' %}</title>
+{% endblock %}
+
+{% block mainBox %}
+<div id="PrivacyPolicyAgreementsPageBox">
+
+    <h1>{% trans 'Privacy Policy' %}</h1>
+
+    <div id="PrivacyPolicyAgreementsContentBox">
+        <div class="accordion" id="PrivacyPoliciesAccordion">
+            {% for privacy_policy in  all_privacy_policy_agreement_objs %}
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#Collapse{{privacy_policy.id}}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="{{privacy_policy.id}}">
+                    {{ privacy_policy.title }}
+                    </button>
+                </h2>
+                <div id="Collapse{{privacy_policy.id}}" class="accordion-collapse collapse show" data-bs-parent="#PrivacyPoliciesAccordion">
+                    <div class="accordion-body">
+                        <p class="text-muted float-end">{{privacy_policy.create_time}}</p>
+                        <a class="text-black" href="{{ privacy_policy.get_absolute_url }}"><h5>{{ privacy_policy.title }}</h5></a>
+                        <p><span class="fw-bolder">Effective Date: </span>{{ privacy_policy.effective_date }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

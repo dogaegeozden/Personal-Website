@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/accountportal/announcement_detail.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>{% trans 'Announcement' %}: {{ announcement_detail.title }}</title>
+{% endblock %}
+
+{% block mainBox %}
+<div id="AnnouncementDetailPageBox">
+    <div id="AnnouncementDetailPageContentBox">
+        <div class="BackButton mb-5">
+            <a type="button" target="_self" class="btn btn-danger btn-lg" href="{% url 'announcements' %}">{% trans 'Back' %}</a>
+        </div>
+        
+        <div id="AnnouncementBox">
+            <p style="width: 100%; text-align: right;">{{ announcement_detail.create_time }}</p>
+            <h2 class="mb-4">{{ announcement_detail.title }}</h2>
+            <div class="mb-4">
+                <ul class="list-group" style="max-width: 500px; height: auto; overflow: hidden;">
+                    {% if announcement_detail.id != None %}
+                    <li class="list-group-item"><span class="fw-bolder">{% trans 'ID' %}: </span>{{announcement_detail.id}}</li>
+                    {% endif %}
+                    {% if announcement_detail.creator != None %}
+                    <li class="list-group-item"><span class="fw-bolder">{% trans 'Created by' %}: </span>{{announcement_detail.creator}}</li>
+                    {% endif %}
+                    {% if announcement_detail.visible_to_groups.all %}
+                    <li class="list-group-item"><span class="fw-bolder">{% trans 'Group' %}: </span>{% for group in announcement_detail.visible_to_groups.all %}{{ group.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="mb-5">
+                <p>{{ announcement_detail.text }}</p>
+            </div>
+            {% if is_announcement_detail_page_error_message_exists %}
+            {% include 'shared/messages.html' %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

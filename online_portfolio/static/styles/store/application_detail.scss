@@ -1,0 +1,101 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+/* MEDIA QUERIES ***************************/
+
+//////////////////////////////
+
+// PHONE
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-phone) {
+
+    #ApplicationDetailPageBox {
+        @include mixins.standard-page-box-style('AppDetail');
+    }
+
+    #ApplicationDetailPageContentBox {
+        @include mixins.standard-detail-content-box-style('AppDetail');
+    }
+
+    #ApplicationMainContentBox {
+        @include mixins.block-box;
+        margin: auto;
+    }
+
+    #ApplicationMainContentBox p {
+        text-align: justify;
+    }
+
+    #ApplicationMainImage {
+        width: 100%;
+    }
+
+    #DownloadButtonBox {
+        @include mixins.block-box;
+        margin: auto;
+    }
+
+    .SubSectionBox {
+        margin: 30px auto;
+    }
+
+    .SubSectionBox h2 {
+        text-align: center;
+    }
+
+    .SubSectionBox p {
+        text-align: justify;
+    }
+
+    .DownloadLink {
+        @include mixins.app-store-button;
+    }
+
+    #GooglePlayStoreBadge {
+        @include mixins.google-play-store-button;
+    }
+
+    #AppleStoreBadge {
+        @include mixins.apple-store-button;
+    }
+
+    #MicrosoftStoreBadge {
+        @include mixins.microsoft-store-button;
+    }
+}
+
+
+
+//////////////////////////////
+
+// TABLET
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-tablet) {
+
+    #ApplicationMainContentBox p{
+        text-align: left;
+    }
+}
+
+
+
+//////////////////////////////
+
+// DESKTOP/LAPTOP
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-desktop) {}
+

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/showcase/share_your_success_story.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>{% trans 'Share Your Success Story' %}</title>
+{% endblock %}
+
+{% block mainBox %}
+<div id="ShareYourSuccessStoryPageBox">
+    <div id="ShareYourSuccessStoryPageContentBox">
+        <h2 class="text-center mb-5">{% trans 'Share Your Success Story' %}</h2>
+
+        <div id="SuccessStorySharingFormBox" class="p-1">
+            <form method="POST" action="{% url 'share-your-success-story' %}" style="width: 100%;">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="id_job_title" class="form-label">{% trans 'Job Title' %}</label>
+                    <input type="text" name="job_title" id="id_job_title" maxlength="250" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="id_website_link" class="form-label">{% trans 'Web Site Link' %}</label>
+                    <input type="text" name="website_link" id="id_website_link" maxlength="250" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="id_text" class="form-label">{% trans 'Text' %}</label>
+                    <textarea type="text" name="text" id="id_text" maxlength="10000" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    {{ success_story_form.captcha }}
+                </div>
+                <div style="display: block; overflow: hidden;">
+                    <a type="button" target="_self" class="btn btn-danger btn-lg" style="float: left;" href="{% url 'dashboard' %}">{% trans 'Back' %}</a>
+                    <button type="submit" name="shareBtn" class="btn btn-primary btn-lg" style="float: right;">{% trans 'Share' %}</button>
+                </div>
+            </form>            
+            {% if is_share_your_success_story_page_success_message_exists or is_share_your_success_story_page_error_message_exists %}
+            {% include 'shared/messages.html' %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

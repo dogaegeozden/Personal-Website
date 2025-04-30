@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block metaDescription %}
+<meta name="description" content="{{ all_meta_description_objs.last.text }}">
+{% endblock %}
+
+{% block title %}
+<title>{{ all_brand_identity_objs.last.brand_name }} - {{ all_brand_identity_objs.last.slogan }}</title>
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/pages/home.css' %}">
+{% endblock %}
+
+{% block HomeLink %}
+<a class="nav-link fw-bold active" aria-current="page" href="{% url 'home'%}">{% trans 'Home' %}</a>
+{% endblock %}
+
+{% block mainBox %}
+<div id="HomePageBox">
+    <div id="HeroSection" class="position-relative">
+        <img
+            src="{{ all_hero_section_objs.last.image.url }}"
+            alt="{{ all_hero_section_objs.last.alt }}"
+            class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover z-n1"
+            width="2000"
+            height="1000"
+            fetchpriority="high"
+            decoding="async"
+            loading="eager"
+        />
+        <div id="HSTextContent" class="text-center position-relative z-1">
+            <h1>{{ all_hero_section_objs.last.title }}</h1>
+            <p id="HeroText" class="mb-4">{{ all_hero_section_objs.last.text }}</p>
+            <a href="{% url 'services' %}">
+                <button type="button" class="btn btn-primary btn-lg fw-bold">{% trans 'Explore' %}</button>
+            </a>
+        </div>
+    </div>      
+
+    <div id="HomePageContentBox">
+        <div id="BioBox">
+            {% if all_profile_picture_objs.first.image %}
+            <div id="BioPicBox" class="col-sm-12 col-md-12 col-lg-6">
+                <a target="_blank" href="{{ all_profile_picture_objs.last.image.url }}"><img style="width: 100%;" id="ProfilePic" src="{{ all_profile_picture_objs.last.image.url }}" alt="{{ all_profile_picture_objs.last.alt }}"></a>
+            </div>
+            {% endif %}
+    
+            {% if all_bio_objs.first.text %}
+            <div id="BioTextBox" class="col-sm-12 col-md-12 col-lg-6">
+                <h2>{{ all_bio_objs.last.name }}</h2>
+                <p>{{ all_bio_objs.last.text }}</p>
+
+                <div id="TALIB">
+                    {% for lot in all_tool_or_language_objs %}
+                    {% if lot.icon_file %}
+                    <img id="{{ lot.title }}" class="ToolIcon mb-3" height="30px" width="30px" src="{{ lot.icon_file.url }}" alt="{{ lot.alt }}"/>&nbsp;
+                    {% elif lot.icon_url %}
+                    <img id="{{ lot.title }}" class="ToolIcon mb-3" height="30px" width="30px" src="{{ lot.icon_url }}" alt="{{ lot.alt }}"/>&nbsp;
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div id="Interests">
+            <h2 class="text-center">{% trans 'Hobbies & Interests'%}</h2>
+
+            <div class="row justify-content-center">
+                {% for interest in all_interest_objs %}
+                <div class="col-sm-12 col-md-6 col-lg-4 InterestBox">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h3>{{ interest.title }}</h3>
+                            <p>{{ interest.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="Clients">
+            <div class="container mb-5 mb-md-6">
+                <div class="row justify-content-md-center">
+                    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6 text-center">
+                        {% if all_clients_section_text_content_objs.last.title %}
+                        <h2 class="mb-4">{{ all_clients_section_text_content_objs.last.title }}</h2>
+                        {% endif %}
+                        {% if all_clients_section_text_content_objs.last.text %}
+                        <p class="text-secondary mb-4 mb-md-5">{{ all_clients_section_text_content_objs.last.text }}</p>
+                        {% endif %}
+                        <hr class="w-50 mx-auto mb-0 text-secondary">
+                    </div>
+                </div>
+            </div>
+    
+            <div class="container overflow-hidden">
+                <div class="row gy-5 gy-md-6">
+                    {% for item in all_partner_objs %}
+                    <div class="col-6 col-md-3 align-self-center text-center">
+                        <a href="{{ item.url }}" target="_blank">
+                            <img width="100%" style="max-width: 200px; max-height: 200px; object-fit: cover; filter: grayscale(30%);border-radius: 7px;" src="{{ item.logo.url }}" alt="{{ item.logo_alt }}">
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

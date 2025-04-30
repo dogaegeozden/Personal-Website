@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block metaDescription %}
+<meta name="description" content="{{ all_meta_description_objs.last.text }}">
+{% endblock %}
+
+{% block title %}
+<title>{% trans 'Project ' %}: {{ project_detail.title }}</title>
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/showcase/project_detail.css' %}">
+{% endblock %}
+
+{% block ShowcaseLink %}
+<a class="nav-link dropdown-toggle fw-bold active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{% trans 'Showcase' %}</a>
+{% endblock %}
+
+{% block mainBox %}
+<div id="ProjectDetailPageBox">
+    <div id="ProjectDetailPageContentBox">
+        <div id="CarouselBox">
+            <div id="projectPictureIndicators" class="carousel slide">
+                <div class="carousel-indicators">
+                    {% if project_detail.picture1 %}
+                    <button type="button" data-bs-target="#projectPictureIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    {% endif %}
+                    {% if project_detail.picture2 %}
+                    <button type="button" data-bs-target="#projectPictureIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    {% endif %}
+                    {% if project_detail.picture3 %}
+                    <button type="button" data-bs-target="#projectPictureIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    {% endif %}                
+                    {% if project_detail.picture4 %}
+                    <button type="button" data-bs-target="#projectPictureIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    {% endif %}
+                    {% if project_detail.picture5 %}
+                    <button type="button" data-bs-target="#projectPictureIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                    {% endif %}
+                    {% if project_detail.picture6 %}
+                    <button type="button" data-bs-target="#projectPictureIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                    {% endif %}
+                    {% if project_detail.picture7 %}
+                    <button type="button" data-bs-target="#projectPictureIndicators" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                    {% endif %}
+                    {% if project_detail.picture8 %}
+                    <button type="button" data-bs-target="#projectPictureIndicators" data-bs-slide-to="7" aria-label="Slide 8"></button>
+                    {% endif %}
+                    {% if project_detail.picture9 %}
+                    <button type="button" data-bs-target="#projectPictureIndicators" data-bs-slide-to="8" aria-label="Slide 9"></button>
+                    {% endif %}
+                </div>
+
+                <div class="carousel-inner">
+                    {% if project_detail.picture1 %}
+                    <div class="carousel-item active">
+                        <a target="_blank" href="{{ project_detail.picture1.url }}">
+                            <img src="{{ project_detail.picture1.url }}" class="d-block w-100" style="border-radius: 0px;" alt="{{ project_detail.alt1 }}">
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if project_detail.picture2 %}
+                    <div class="carousel-item">
+                        <a target="_blank" href="{{ project_detail.picture2.url }}">
+                            <img src="{{ project_detail.picture2.url }}" class="d-block w-100" style="border-radius: 0px;" alt="{{ project_detail.alt2 }}">
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if project_detail.picture3 %}
+                    <div class="carousel-item">
+                        <a target="_blank" href="{{ project_detail.picture3.url }}">
+                            <img src="{{ project_detail.picture3.url }}" class="d-block w-100" style="border-radius: 0px;" alt="{{ project_detail.alt3 }}">
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if project_detail.picture4 %}
+                    <div class="carousel-item">
+                        <a target="_blank" href="{{ project_detail.picture4.url }}">
+                            <img src="{{ project_detail.picture4.url }}" class="d-block w-100" style="border-radius: 0px;" alt="{{ project_detail.alt4 }}">
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if project_detail.picture5 %}
+                    <div class="carousel-item">
+                        <a target="_blank" href="{{ project_detail.picture5.url }}">
+                           <img src="{{ project_detail.picture5.url }}" class="d-block w-100" style="border-radius: 0px;" alt="{{ project_detail.alt5 }}">
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if project_detail.picture6 %}
+                    <div class="carousel-item">
+                        <a target="_blank" href="{{ project_detail.picture6.url }}">
+                           <img src="{{ project_detail.picture6.url }}" class="d-block w-100" style="border-radius: 0px;" alt="{{ project_detail.alt6 }}">
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if project_detail.picture7 %}
+                    <div class="carousel-item">
+                        <a target="_blank" href="{{ project_detail.picture7.url }}">
+                           <img src="{{ project_detail.picture7.url }}" class="d-block w-100" style="border-radius: 0px;" alt="{{ project_detail.alt7 }}">
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if project_detail.picture8 %}
+                    <div class="carousel-item">
+                        <a target="_blank" href="{{ project_detail.picture8.url }}">
+                           <img src="{{ project_detail.picture8.url }}" class="d-block w-100" style="border-radius: 0px;" alt="{{ project_detail.alt8 }}">
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if project_detail.picture9 %}
+                    <div class="carousel-item">
+                        <a target="_blank" href="{{ project_detail.picture9.url }}">
+                           <img src="{{ project_detail.picture9.url }}" class="d-block w-100" style="border-radius: 0px;" alt="{{ project_detail.alt9 }}">
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+    
+                <button class="carousel-control-prev" type="button" data-bs-target="#projectPictureIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                        </svg>
+                    </span>
+                    <span class="visually-hidden">{% trans 'Previous' %}</span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#projectPictureIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" style="color: #007bff;" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+                        </svg>
+                    </span>
+                    <span class="visually-hidden">{% trans 'Next' %}</span>
+                </button>
+            </div>
+
+            {% if project_detail.client %}
+            <div id="FurtherInfoBox">
+                {% if project_detail.url %}
+                <p><span class="fw-bold">{% trans 'URL' %}: </span><a href="{{ project_detail.url }}" target="_blank">{{ project_detail.url }}</a></p>
+                {% endif %}
+                {% if project_detail.client %}
+                <p><span class="fw-bold">{% trans 'Client' %}: </span>{{ project_detail.client }}</p>
+                {% endif %}
+                {% if project_detail.project_type %}
+                <p><span class="fw-bold">{% trans 'Project Type' %}: </span>{{ project_detail.project_type }}</p>
+                {% endif %}
+                {% if project_detail.tags %}
+                <p><span class="fw-bold">{% trans 'Tags' %}:</span></p>
+                <ul>
+                    {% for tech in project_detail.tags %}
+                    <li>{{ tech }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div id="DescriptionBox">
+            <h2>{{ project_detail.title }}</h2>
+            <p>{{ project_detail.description }}</p>
+
+            <div class="col-12 mt-5">
+                <h3>{% trans 'Send Us Your Feedback' %}!</h3>
+                <form method="POST" action="{% url 'project-detail' project_detail.id %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label" for="id_full_name">{% trans 'Full Name' %}</label>
+                        <input name="full_name" type="text" class="form-control" id="id_full_name" placeholder="Your Name" maxlength="300" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_email">{% trans 'Email' %}</label>
+                        <input name="email" type="email" class="form-control" id="id_email" placeholder="Your Email" maxlength="300" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_phone_number">{% trans 'Phone Number' %}</label>
+                        <input name="phone_number" type="text" class="form-control" id="id_phone_number" placeholder="Phone Number" maxlength="100" required>
+                        <span class="helptext text-muted">{% trans 'Please enter a valid phone number, including country code (e.g. +1 for Canada or USA)' %}</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_feedback">{% trans 'Feedback' %}</label>
+                        <textarea name="feedback" class="form-control" id="id_feedback" rows="4" placeholder="Your Feedback" maxlength="10000" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        {{ feedback_form.captcha }}
+                    </div>
+                    <button type="submit" name="submitBtn" class="btn btn-primary btn-lg">{% trans 'Submit' %}</button>
+                </form>
+            </div>
+
+            {% if is_project_detail_page_success_message_exists or is_project_detail_page_success_message_exists %}
+            {% include 'shared/messages.html' %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

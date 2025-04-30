@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+<title>{% trans 'Unsubscribe' %}</title>
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/pages/unsubscribe.css' %}">
+{% endblock %}
+
+{% block mainBox %}
+<div id="UnsubscribePageBox">
+    <div id="UnsubscribeFormBox">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <img src="{{ all_brand_identity_objs.last.logo.url }}" style="width: 100px; height:100px;" class="rounded float-start" alt="{{ all_brand_identity_objs.last.logo_alt }}">
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="mt-4">
+                        <h2 class="mb-4">{% trans 'Unsubscribe' %}</h2>
+                        <p>{% trans 'Are you sure you want to unsubscribe?' %}</p>
+                    </div>
+                    <form method="post"  action="." class="mt-4">
+                        {% csrf_token %}
+                        <button name="unsubscribeBtn" type="submit" class="btn btn-danger btn-lg">{% trans 'Unsubscribe'%}!</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

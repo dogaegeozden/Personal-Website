@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Doga Ege Ozden's Site: New Contact Message</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f4f4f4;
+                color: #333;
+                margin: 0;
+                padding: 0;
+            }
+            .email-container {
+                max-width: 600px;
+                margin: 20px auto;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h1 {
+                color: #007BFF;
+            }
+            p {
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="email-container">
+            <h1>{{ message }}</h1>
+
+            {% if contact_message.full_name %}
+            <p><strong>Full Name: </strong>{{ contact_message.full_name }}</p>
+            {% endif %}
+            {% if contact_message.sender_email %}
+            <p><strong>Sender Email: </strong>{{ contact_message.sender_email }}</p>
+            {% endif %}
+            {% if contact_message.phone_num %}
+            <p><strong>Phone Number: </strong>{{ contact_message.phone_num }}</p>
+            {% endif %}
+            {% if contact_message.message %}
+            <p><strong>Message: </strong>{{ contact_message.message }}</p>
+            {% endif %}
+            <br>
+
+            <h2>Further Information</h2>
+            {% if contact_message.ip_address %}
+            <p><strong>IP Address: </strong>{{ contact_message.ip_address }}</p>
+            {% endif %}
+            {% if contact_message.user_agent %}
+            <p><strong>User Agent: </strong>{{ contact_message.user_agent }}</p>
+            {% endif %}
+            {% if contact_message.sending_time %}
+            <p><strong>Sending Time: </strong>{{ contact_message.sending_time }}</p>
+            {% endif %}
+            <br>
+
+            <p>This email has been sent by www.dogaegeozden.com</p>
+        </div>
+    </body>
+</html>

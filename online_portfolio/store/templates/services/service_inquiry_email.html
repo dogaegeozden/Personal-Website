@@ -1,0 +1,72 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Doga Ege Ozden's Site: Service Inquiry</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f4f4f4;
+                color: #333;
+                margin: 0;
+                padding: 0;
+            }
+            .email-container {
+                max-width: 600px;
+                margin: 20px auto;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h1 {
+                color: #007BFF;
+            }
+            p {
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="email-container">
+            <h1>{{ message }}</h1>
+            
+            {% if service_inquiry.service_choice %}
+            <p><strong>{% trans 'Service Choice' %}: </strong>{{ service_inquiry.service_choice }}</p>
+            {% endif %}
+            {% if service_inquiry.name %}
+            <p><strong>Name: </strong>{{ service_inquiry.name }}</p>
+            {% endif %}
+            {% if service_inquiry.email %}
+            <p><strong>Email: </strong>{{ service_inquiry.email }}</p>
+            {% endif %}
+            {% if service_inquiry.phone_number %}
+            <p><strong>Phone Number: </strong>{{ service_inquiry.phone_number }}</p>
+            {% endif %}
+            {% if service_inquiry.subject %}
+            <p><strong>Subject: </strong>{{ service_inquiry.subject }}</p>
+            {% endif %}
+            {% if service_inquiry.project_details %}
+            <p><strong>Project Details: </strong>{{ service_inquiry.project_details }}</p>
+            {% endif %}
+
+            <br>
+
+            <h2>Further Information</h2>
+            {% if service_inquiry.ip_address %}
+            <p><strong>Ip Address: </strong>{{ service_inquiry.ip_address }}</p>
+            {% endif %}
+            {% if service_inquiry.user_agent %}
+            <p><strong>User Agent: </strong>{{ service_inquiry.user_agent }}</p>
+            {% endif %}
+            {% if service_inquiry.submit_time %}
+            <p><strong>Submit Time: </strong>{{ service_inquiry.submit_time }}</p>
+            {% endif %}
+
+            <br>
+            <p>This email has been sent by www.dogaegeozden.com</p>
+        </div>
+    </body>
+</html>

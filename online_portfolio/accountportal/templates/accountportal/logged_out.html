@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block metaDescription %}
+<meta name="description" content="{{ all_logout_page_meta_descriptions.last.text }}">
+{% endblock %}
+
+{% block title %}
+<title>{% trans 'Logout' %}</title>
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/accountportal/logged_out.css' %}">
+{% endblock %}
+
+{% block mainBox %}
+<div id="LogoutPageBox">
+    <div id="LogoutResponseBox">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <img src="{{ all_brand_identity_objs.last.logo.url }}" style="width: 100px; height:100px;" class="rounded float-start" alt="{{ all_brand_identity_objs.last.logo_alt }}">    
+                </div>
+            </div>
+    
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="mt-4">
+                        <h2 class="mb-4">{% trans 'Logged out' %}!</h2>
+                        <p class="fw-bolder">{% trans 'You have been successfully logged out' %}.</p>
+                        <a href="{% url 'login'%}" class="btn btn-success btn-lg">{% trans 'Click here to login again' %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

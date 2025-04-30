@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ post.title }}</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f4f4f4;
+                color: #333;
+                margin: 0;
+                padding: 0;
+            }
+            .email-container {
+                max-width: 600px;
+                margin: 20px auto;
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                position: relative;
+            }
+            h1 {
+                color: #007BFF;
+            }
+            p {
+                line-height: 1.6;
+            }
+            .img-fluid {
+                max-width: 100%;
+                margin: auto;
+            }
+            #UnsubscribeLink {
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+            }
+
+            #ReadMoreButton {
+                background-color: white;
+                color: #007BFF;
+                padding: 10px 20px;
+                border: 1px solid #007BFF;
+                border-radius: 5px;
+                cursor: pointer;
+                text-decoration: none;
+                display: inline-block;
+            }
+            #ReadMoreButton:hover {
+                background-color: #0056b3;
+                color: white;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="email-container">
+            <h1>{{ message }}</h1>
+            {% if post.image %}
+            <img src="cid:post_image_name" class="img-fluid" alt="{{ post.alt }}">
+            {% endif %}
+            {% if post.para1 %}
+            <p>{{ post.para1 }}</p>
+            {% endif %}
+            {% if post.para2 %}
+            <p>{{ post.para2 }}</p>
+            {% endif %}
+            {% if post.para3 %}
+            <p>{{ post.para3 }}</p>
+            {% endif %}
+            {% if post.para4 %}
+            <p>{{ post.para4 }}</p>
+            {% endif %}
+            {% if post.para5 %}
+            <p>{{ post.para5 }}</p>
+            {% endif %}
+            {% if post.para6 %}
+            <p>{{ post.para6 }}</p>
+            {% endif %}
+            {% if post.para7 %}
+            <p>{{ post.para7 }}</p>
+            {% endif %}
+            <a href="https://www.dogaegeozden.com{{ post.get_absolute_url }}" target="_blank" id="ReadMoreButton">Read More</a>
+            <br>
+            <br>
+            <br>
+            <a id="UnsubscribeLink" href="https://www.dogaegeozden.com{{ subscription.get_unsubscribe_link }}">Unsubscribe</a>
+        </div>
+    </body>
+</html>

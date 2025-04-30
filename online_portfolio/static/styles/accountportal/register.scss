@@ -1,0 +1,30 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+//////////////////////////////
+
+// MEDIA QUERIES
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-phone) {
+
+    #RegisterPageBox {
+    	@include mixins.accountportal-page-box-style;
+	}
+
+    #RegisterFormBox {
+        @include mixins.accountportal-content-box-style;
+    }
+}
+
+@media (min-width: vars.$break-point-tablet) {}
+@media (min-width: vars.$break-point-desktop) {}

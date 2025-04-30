@@ -1,0 +1,278 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block metaDescription %}
+<meta name="description" content="{{ game_content.meta_description }}">
+{% endblock %}
+
+{% block title %}
+<title>{{ game_content.title }}</title>
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel='stylesheet' href="{% static 'styles/store/game_detail.css' %}">
+{% endblock %}
+
+{% block StoreLink %}
+<a class="nav-link dropdown-toggle fw-bold active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{% trans 'Store' %}</a>
+{% endblock %}
+
+{% block mainBox %}
+{% if game_content.coming_soon_status == "y" %}
+<div id="ComingSoonNotification"></div>
+
+<div id="CSNB">
+    <h1>{% trans 'Coming Soon' %}</h1>
+</div>
+{% endif %}
+
+<div id="GameDetailPageBox">
+
+    <div id="GameMainContentBox">
+        {% if game_content.title_preview == "y" %}
+        <h1>{{ game_content.title }}</h1>
+        {% endif %}
+
+        {% if game_content.main_image_portrait %}
+        <img style="object-fit: cover;" id="GameMainContentImage" src="{{ game_content.main_image_portrait.url }}" alt="{{ game_content.main_visual_alt }}">
+        {% elif game_content.main_image_landscape %}
+        <img style="object-fit: cover;" id="GameMainContentImage" src="{{ game_content.main_image_landscape.url }}" alt="{{ game_content.main_visual_alt }}">
+        {% endif %}
+    </div>
+    
+    <div id="GameSubContentBox">
+
+        {% if game_content.image1 %}
+        <div class="GameSubContentInnerBox">
+            <div class="LeftGameSubContentInnerImageBox GameSubContentInnerImageBox">
+                <a href="{{ game_content.image1.url }}" target="_blank"><img class="GameSubImg" src="{{ game_content.image1.url }}" alt="{{ game_content.image_alt1 }}"></a>
+            </div>
+    
+            <div class="RightGameSubContentInnerParaBox GameSubContentInnerParaBox">
+                <h2>{{ game_content.header1 }}</h2>
+                <p>{{ game_content.text1 }}</p>
+                {% if game_content.google_play_download_link %}
+                <form name="googlePlayBtnForm" class="GooglePlayBtnForm" action="{% url 'game-detail' game_content.slug %}" method='POST'>
+                    {% csrf_token %}
+                    <input type="hidden" name="appChoice" value="{{ game_content.google_play_download_link }}">
+                    <button id="GooglePlayStoreBadge" type="submit" class="DownloadLink" name="appDownloadBtn"></button>
+                </form>
+                {% endif %}
+
+                {% if game_content.apple_store_download_link %}
+                <form name="appleStoreBtnForm" class="AppleStoreBtnForm" action="{% url 'game-detail' game_content.slug %}" method='POST'>
+                    {% csrf_token %}
+                    <input type="hidden" name="appChoice" value="{{ game_content.apple_store_download_link }}">
+                    <button id="AppleStoreBadge" type="submit" class="DownloadLink" name="appDownloadBtn"></button>
+                </form>
+                {% endif %}
+
+                {% if game_content.microsoft_store_download_link %}
+                <form name="microsoftStoreBtnForm" class="MicrosoftStoreBtnForm" action="{% url 'game-detail' game_content.slug %}" method='POST'>
+                    {% csrf_token %}
+                    <input type="hidden" name="appChoice" value="{{ game_content.microsoft_store_download_link }}">
+                    <button id="MicrosoftStoreBadge" type="submit" class="DownloadLink" name="appDownloadBtn"></button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    
+        {% if game_content.image2 %}
+        <div class="GameSubContentInnerBox">
+            <div class="RightGameSubContentInnerImageBox GameSubContentInnerImageBox">
+                <a href="{{ game_content.image2.url }}" target="_blank"><img class="GameSubImg" src="{{ game_content.image2.url }}" alt="{{ game_content.image_alt2 }}"></a>
+            </div>
+    
+            <div class="LeftGameSubContentInnerParaBox GameSubContentInnerParaBox">
+                <h2>{{ game_content.header2 }}</h2>
+                <p>{{ game_content.text2 }}</p>
+            </div>
+        </div>
+        {% endif %}
+    
+        {% if game_content.image3 %}
+        <div class="GameSubContentInnerBox">
+            <div class="LeftGameSubContentInnerImageBox GameSubContentInnerImageBox">
+                <a href="{{ game_content.image3.url }}" target="_blank"><img class="GameSubImg" src="{{ game_content.image3.url }}" alt="{{ game_content.image_alt3 }}"></a>
+            </div>
+    
+            <div class="RightGameSubContentInnerParaBox GameSubContentInnerParaBox">
+                <h2>{{ game_content.header3 }}</h2>
+                <p>{{ game_content.text3 }}</p>    
+            </div>
+        </div>
+        {% endif %}
+    
+        {% if game_content.image4 %}
+        <div class="GameSubContentInnerBox">
+            <div class="RightGameSubContentInnerImageBox GameSubContentInnerImageBox">
+                <a href="{{ game_content.image4.url }}" target="_blank"><img class="GameSubImg" src="{{ game_content.image4.url }}" alt="{{ game_content.image_alt4 }}"></a>
+            </div>
+    
+            <div class="LeftGameSubContentInnerParaBox GameSubContentInnerParaBox">
+                <h2>{{ game_content.header4 }}</h2>
+                <p>{{ game_content.text4 }}</p>
+            </div>
+        </div>
+        {% endif %}
+    
+        {% if game_content.image5 %}
+        <div class="GameSubContentInnerBox">
+            <div class="LeftGameSubContentInnerImageBox GameSubContentInnerImageBox">
+                <a href="{{ game_content.image5.url }}" target="_blank"><img class="GameSubImg" src="{{ game_content.image5.url }}" alt="{{ game_content.image_alt5 }}"></a>
+            </div>
+    
+            <div class="RightGameSubContentInnerParaBox GameSubContentInnerParaBox">
+                <h2>{{ game_content.header5 }}</h2>
+                <p>{{ game_content.text5 }}</p>
+            </div>
+        </div>
+        {% endif %}
+    
+    </div>
+    
+    {% if game_content.video1 %}
+    <div id="GameSubContentVideoSlideShow">
+        {% if game_content.video1 and game_content.video2 %}
+        <button id="PrevBtn" type="button" name="button">&#10094;</button>
+        {% endif %}
+    
+        {% if game_content.video1 or game_content.youtube_url1 %}
+        <div class="GameSubVidCont">
+            {% if game_content.video1 %}
+            <video class='GameVid'controls>
+                <source src="{{ game_content.video1.url }}" type="video/mp4" alt="{{ game_content.video_alt1 }}">
+            </video>
+            {% elif game_content.youtube_url1 %}
+            <iframe class='GameVid' src="{{ game_content.youtube_url1 }}" alt='{{ game_content.video_alt1 }}' controls="1" showinfo="0" autoplay="0" frameborder="0" allowfullscreen="1"></iframe>
+            {% endif %}
+        </div>
+        {% endif %}
+    
+        {% if game_content.video2 or game_content.youtube_url2 %}
+        <div class="GameSubVidCont">
+            {% if game_content.video2 %}
+            <video class='GameVid' controls>
+                <source src="{{ game_content.video2.url }}" type="video/mp4" alt="{{ game_content.video_alt2 }}">
+            </video>
+            {% elif game_content.youtube_url2 %}
+            <iframe class='GameVid' src="{{ game_content.youtube_url2 }}" alt='{{ game_content.video_alt2 }}' controls="1" showinfo="0" autoplay="0" frameborder="0" allowfullscreen="1"></iframe>
+            {% endif %}
+        </div>
+        {% endif %}
+    
+        {% if game_content.video3 or game_content.youtube_url3 %}
+        <div class="GameSubVidCont">
+            {% if game_content.video3 %}
+            <video class='GameVid' controls>
+                <source src="{{ game_content.video3.url }}" type="video/mp4" alt="{{ game_content.video_alt3 }}">
+            </video>
+            {% elif game_content.youtube_url3 %}
+            <iframe class='GameVid' src="{{ game_content.youtube_url3 }}" alt='{{ game_content.video_alt3 }}' controls="1" showinfo="0" autoplay="0" frameborder="0" allowfullscreen="1"></iframe>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if game_content.video4 or game_content.youtube_url4 %}
+        <div class="GameSubVidCont">
+            {% if game_content.video4 %}
+            <video class='GameVid' controls>
+                <source src="{{ game_content.video4.url }}" type="video/mp4" alt="{{ game_content.video_alt4 }}">
+            </video>
+            {% elif game_content.youtube_url4 %}
+            <iframe class='GameVid' src="{{ game_content.youtube_url4 }}" alt='{{ game_content.video_alt4 }}' controls="1" showinfo="0" autoplay="0" frameborder="0" allowfullscreen="1"></iframe>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if game_content.video5 or game_content.youtube_url5 %}
+        <div class="GameSubVidCont">
+            {% if game_content.video5 %}
+            <video class='GameVid' controls>
+                <source src="{{ game_content.video5.url }}" type="video/mp4" alt="{{ game_content.video_alt5 }}">
+            </video>
+            {% elif game_content.youtube_url5 %}
+            <iframe class='GameVid' src="{{ game_content.youtube_url5 }}" alt='{{ game_content.video_alt5 }}' controls="1" showinfo="0" autoplay="0" frameborder="0" allowfullscreen="1"></iframe>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if game_content.video1 and game_content.video2 %}
+        <button id="NextBtn" type="button" name="button">&#10095;</button>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block javaScriptCodes %}
+<script src="{% static 'js/store/redirect_to_store.js' %}"></script>
+<script type="text/javascript">
+
+    // Change the main image when the device size is suitable for a desktop or tablet
+    const gameMainImg = document.querySelector("#GameMainContentImage");
+
+    if (screen_width >= 600) {
+        gameMainImg.setAttribute("src", "{{ game_content.main_image_landscape.url }}");
+    }
+
+    // Redirect users to app stores when they press download buttons
+    {% if game_content.google_play_download_link %}
+    const googlePlayDownloadBtn = document.querySelector("#GooglePlayStoreBadge");
+    googlePlayDownloadBtn.addEventListener("click", () => redirectToStore("{{ game_content.google_play_download_link }}"));
+    {% endif %}
+
+    {% if game_content.apple_store_download_link %}
+    const appleStoreDownloadBtn = document.querySelector("#AppleStoreBadge");
+    appleStoreDownloadBtn.addEventListener("click", () => redirectToStore("{{ game_content.apple_store_download_link }}"));
+    {% endif %}
+
+    {% if game_content.microsoft_store_download_link %}
+    const microsoftStoreDownloadBtn = document.querySelector("#MicrosoftStoreBadge");
+    microsoftStoreDownloadBtn.addEventListener("click", () => redirectToStore("{{ game_content.microsoft_store_download_link }}"));
+    {% endif %}
+
+    // Make the slideshow interactive
+    const prevBtn = document.querySelector("#PrevBtn"),
+        nextBtn = document.querySelector("#NextBtn"),
+        gameVids = document.querySelectorAll(".GameSubVidCont");
+
+    let slideIndex = 0;
+
+    // Hide all game videos initially
+    gameVids.forEach(video => {
+        video.style.display = "none";
+    });
+
+    // Display the initial slide
+    gameVids[slideIndex].style.display = "block";
+
+    if (prevBtn) {
+        prevBtn.addEventListener("click", showSlide.bind(null, -1));
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener("click", showSlide.bind(null, 1));
+    }
+
+    // Function to show the previous or next slide
+    function showSlide(direction) {
+        const currentVideo = gameVids[slideIndex].querySelector('video');
+        const nextVideo = gameVids[slideIndex + direction].querySelector('video');
+        
+        if (currentVideo) {
+          currentVideo.pause();
+        }
+        
+        gameVids[slideIndex].style.display = "none";
+        slideIndex = (slideIndex + direction + gameVids.length) % gameVids.length;
+        gameVids[slideIndex].style.display = "block";
+
+        if (nextVideo) {
+          nextVideo.play();
+        }
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+<title>{% trans "Dashboard" %}</title>
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/accountportal/dashboard.css' %}">
+{% endblock %}
+
+{% block mainBox %}
+<div id="DashboardPageBox">
+    <div id="DashboardContentBox" class="p-4">
+        <div id="ProfileBox" class="mb-5">
+            <a class="text-dark text-decoration-none" href="{% url 'profile' %}">
+                <div class="ActionDiv">
+                    <img id="ProfilePicture" src="{{ user.profile.image.url }}" class="rounded-circle account-img float-start" alt="Profile Picture">
+                    <p class="me-4">{{ user.username }}</p>
+                    {% if num_of_deals_awaiting_payment and num_of_deals_awaiting_payment != 0 and not has_supervisor_or_admin_status %}
+                    <button type="button" style="background: transparent;" class="position-relative float-end">
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{num_of_deals_awaiting_payment}}
+                            <span class="visually-hidden">{% trans "unread messages" %}</span>
+                        </span>
+                    </button>
+                    {% endif %}
+                </div>
+            </a>
+        </div>
+
+        <div id="OperationsBox" class="mb-5">
+            {% if has_admin_status %}
+            <a class="text-dark text-decoration-none" href="{% url 'admin:index' %}">
+                <div class="ActionDiv mb-3">
+                    <svg class="me-1" width="25" height="25" fill="currentColor" viewBox="0 0 128 128">
+                        <path d="M59.448 0h20.93v96.88c-10.737 2.04-18.62 2.855-27.181 2.855-25.551-.001-38.87-11.551-38.87-33.705 0-21.338 14.135-35.2 36.015-35.2 3.398 0 5.98.272 9.106 1.087zm0 48.765c-2.446-.815-4.485-1.086-7.067-1.086-10.6 0-16.717 6.523-16.717 17.939 0 11.145 5.845 17.26 16.582 17.26 2.309 0 4.212-.136 7.202-.542z"></path><path d="M113.672 32.321V80.84c0 16.717-1.224 24.735-4.893 31.666-3.398 6.661-7.883 10.873-17.124 15.494l-19.435-9.241c9.242-4.35 13.726-8.153 16.58-14 2.99-5.979 3.943-12.91 3.943-31.122V32.321zM92.742.111h20.93v21.474h-20.93z"></path>
+                    </svg>    
+        
+                    <p>{% trans "Admin panel" %}</p>
+                </div>
+            </a>
+            {% endif %}
+
+            <a class="text-dark text-decoration-none" href="{% url 'announcements' %}">
+                <div class="ActionDiv mb-3">
+                    <svg class="me-1" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-megaphone" viewBox="0 0 16 16">
+                        <path d="M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0v-.214c-2.162-1.241-4.49-1.843-6.912-2.083l.405 2.712A1 1 0 0 1 5.51 15.1h-.548a1 1 0 0 1-.916-.599l-1.85-3.49-.202-.003A2.014 2.014 0 0 1 0 9V7a2.02 2.02 0 0 1 1.992-2.013 75 75 0 0 0 2.483-.075c3.043-.154 6.148-.849 8.525-2.199zm1 0v11a.5.5 0 0 0 1 0v-11a.5.5 0 0 0-1 0m-1 1.35c-2.344 1.205-5.209 1.842-8 2.033v4.233q.27.015.537.036c2.568.189 5.093.744 7.463 1.993zm-9 6.215v-4.13a95 95 0 0 1-1.992.052A1.02 1.02 0 0 0 1 7v2c0 .55.448 1.002 1.006 1.009A61 61 0 0 1 4 10.065m-.657.975 1.609 3.037.01.024h.548l-.002-.014-.443-2.966a68 68 0 0 0-1.722-.082z"/>
+                    </svg>
+        
+                    <p class="me-2">{% trans 'Announcements' %}</p>
+                    {% if unseen_announcements_count != 0 %}
+                    <button type="button" style="background: transparent;" class="position-relative float-end">
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{unseen_announcements_count}}
+                            <span class="visually-hidden">{% trans 'unread messages' %}</span>
+                        </span>
+                    </button>
+                    {% endif %}
+                </div>
+            </a>
+            <a class="text-dark text-decoration-none" href="{% url 'share-your-success-story' %}">
+                <div class="ActionDiv mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                    </svg>
+        
+                    <p class="me-2">{% trans 'Share your success story' %}</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,270 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+//////////////////////////////
+
+// GLOBAL STYLES
+
+//////////////////////////////
+
+#ComingSoonNotification {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: black;
+    z-index: 2;
+    opacity: 0.4;
+}
+
+#CSNB {
+    min-height: 300px;
+    display: block;
+    width: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+#CSNB h1 {
+    text-shadow: 0 0 8px cyan;
+}
+
+h1 {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    text-align: center;
+    z-index: 0;
+    color: white;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 120px;
+}
+
+
+
+/* MEDIA QUERIES ***************************/
+
+//////////////////////////////
+
+// PHONE
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-phone) {
+
+    #GameDetailPageBox {
+        @include mixins.standard-page-box-style('GameDetail');
+    }
+
+    #GameMainContentBox {
+        @include mixins.standard-detail-content-box-style('GameDetail');
+    }
+
+    #GameMainContentImage {
+        width: 100%;
+    }
+
+    #GameSubContentBox {
+        min-height: 100vh;
+        height: auto;
+        width: 100%;
+        display: block;
+        margin: 100px auto 30px auto;
+        overflow: hidden;
+    }
+
+    .GameSubContentInnerBox {
+        width: 100%;
+        min-height: 100px;
+        height: auto;
+        display: block;
+        margin: 0px auto 90px auto;
+        overflow: hidden;
+    }
+
+    .GameSubContentInnerBox h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .GameSubContentInnerBox p {
+        text-align: justify;
+    }
+
+    .GameSubContentInnerImageBox {
+        width: 60%;
+        height: auto;
+        display: block;
+        margin: 0 auto 30px auto
+    }
+
+    .GameSubImg {
+        width: 100%;
+        height: auto;
+    }
+
+    .GameSubContentInnerParaBox {
+        width: 100%;
+        min-height: 50px;
+        height: auto;
+        display: block;
+        padding: 20px;
+    }
+
+    #GameSubContentVideoSlideShow {
+        width: 100%;
+        margin: 0 auto;
+        height: auto;
+        display: flex;
+    }
+
+    .GameSubVidCont {
+        width: 60%;
+        height: 100%;
+        display: block;
+        margin: auto;
+        float: left;
+    }
+
+    .GameVid {
+        width: 100%;
+        height: auto;
+        margin: auto;
+    }
+
+    #PrevBtn, #NextBtn {
+        position: relative;
+        margin: auto 0;
+        font-weight: bold;
+        background: black;
+        color: white;
+        border: none;
+        height: 50px;
+        width: 50px;
+        font-size: 25px;
+    }
+
+    #PrevBtn {
+        border-radius: 0px 50px 50px 0px;
+    }
+    
+    #NextBtn {
+        border-radius: 50px 0px 0px 50px;
+    }
+
+    #PrevBtn:hover {
+        background: gray;
+    }
+    
+    #NextBtn:hover {
+        background: gray;
+    }
+
+    .DownloadLink {
+        @include mixins.app-store-button;
+    }
+
+    #GooglePlayStoreBadge {
+        @include mixins.google-play-store-button;
+    }
+
+    #AppleStoreBadge {
+        @include mixins.apple-store-button;
+    }
+
+    #MicrosoftStoreBadge {
+        @include mixins.microsoft-store-button;
+    }
+}
+
+
+
+//////////////////////////////
+
+// TABLET
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-tablet) {
+
+    .GameSubContentInnerBox p {
+        text-align: center;
+    }
+
+    .LeftGameSubContentInnerImageBox, .LeftGameSubContentInnerImageBox .GameSubImg, .LeftGameSubContentInnerParaBox {
+        float: left;
+    }
+    
+    .RightGameSubContentInnerImageBox, .RightGameSubContentInnerImageBox .GameSubImg, .RightGameSubContentInnerParaBox {
+        float: right;
+    }
+
+    .GameSubContentInnerImageBox {
+        width: 37.5%;
+    }
+    
+    .GameSubContentInnerParaBox {
+        width: 57.5%;
+    }
+    
+    .LeftGameSubContentInnerImageBox {
+        margin-right: 5%;
+    } 
+    
+    .RightGameSubContentInnerImageBox {
+        margin-left: 5%;
+    }
+
+    .LeftGameSubContentInnerParaBox {
+        padding: 50px 0 50px 5%;
+    }
+
+    .RightGameSubContentInnerParaBox {
+        padding: 50px 5% 50px 0;
+    }
+
+    #PrevBtn, #NextBtn {
+        height: 80px;
+        width: 80px;
+    }
+}
+
+
+
+//////////////////////////////
+
+// DESKTOP
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-desktop) {
+
+    #GameSubContentBox {
+        max-width: 1600px;
+    }
+
+    .GameSubContentInnerBox, .GameSubImg {
+        max-height: 800px;
+    }
+
+    .GameSubImg {
+        width: auto;
+    }
+
+    .DownloadLink {
+        margin: 17px 17px 0px 0px;
+    }
+}

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block metaDescription %}
+<meta name="description" content="{{ all_meta_description_objs.last.text }}">
+{% endblock %}
+
+{% block title %}
+<title>{% trans 'Contact'%}</title>
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/pages/contact.css' %}">
+{% endblock %}
+
+{% block mainBox %}
+<div id="ContactPageBox">
+    <div id="HeroSection" class="position-relative">
+        <img
+            src="{{ all_hero_section_objs.last.image.url }}"
+            alt="{{ all_hero_section_objs.last.alt }}"
+            class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover z-n1"
+            width="2000"
+            height="1000"
+            fetchpriority="high"
+            decoding="async"
+            loading="eager"
+        />
+        <div id="HSTextContent" class="text-center position-relative z-1">
+            <h1>{{ all_hero_section_objs.last.title }}</h1>
+            <p id="HeroText">{{ all_hero_section_objs.last.text }}</p>
+        </div>
+    </div>
+
+    <div id="ContactPageContentBox">
+        <div id="ContactBox">
+            <div id="PictureBox" class="col-sm-12 col-md-12 col-lg-6">
+                <img src="{{ all_contact_page_main_visual_objs.last.image.url }}" alt="{{ all_contact_page_main_visual_objs.last.alt }}" class="contact-image img-fluid">
+            </div>
+
+            <div id="FormBox" class="col-sm-12 col-md-12 col-lg-6">
+                <h2>{% trans 'Send Your Message' %}</h2>
+
+                <form method="POST" action="{% url 'contact' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label" for="id_full_name">{% trans 'Full Name' %}</label>
+                        <input name="full_name" type="text" class="form-control" id="id_full_name" placeholder="Your Name" maxlength="300" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_sender_email">{% trans 'Email' %}</label>
+                        <input name="sender_email" type="email" class="form-control" id="id_sender_email" placeholder="Your Email" maxlength="300" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_phone_num">{% trans 'Phone Number' %}</label>
+                        <input name="phone_num" type="text" class="form-control" id="id_phone_num" placeholder="Phone Number" maxlength="100" required>
+                        <span class="helptext text-muted">{% trans 'Please enter a valid phone number, including country code (e.g. +1 for Canada or USA)' %}</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_message">{% trans 'Message' %}</label>
+                        <textarea name="message" class="form-control" id="id_message" rows="4" placeholder="Your Message" maxlength="10000" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        {{ contact_form.captcha }}
+                    </div>
+
+                    <button type="submit" name="submitBtn" class="btn btn-primary btn-lg">{% trans 'Submit' %}</button>
+                </form>
+
+                {% if is_contact_page_success_message_exists or is_contact_page_error_message_exists%}
+                {% include 'shared/messages.html' %}
+                {% endif %}
+
+                <div class="mt-5">
+                    <h2>{% trans 'Contact Information' %}</h2>
+                    {% if all_contact_information_objs.last.info_email %}
+                    <p><span class="fw-bold">{% trans 'Info' %}:</span> {{ all_contact_information_objs.last.info_email }}</p>
+                    {% endif %}
+                    {% if all_contact_information_objs.last.customer_support_email != all_contact_information_objs.last.info_email %}
+                    <p><span class="fw-bold">{% trans 'Customer Support' %}:</span> {{ all_contact_information_objs.last.customer_support_email }}</p>
+                    {% endif %}
+                    <p><span class="fw-bold">{% trans 'Phone' %}:</span> {{ all_contact_information_objs.last.phone_number }}</p>
+                    {% if all_contact_information_objs.last.office_address %}
+                    <p><span class="fw-bold">{% trans 'Address' %}:</span> {{ all_contact_information_objs.last.office_address }}</p>
+                    {% endif %}
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+{% endblock %}

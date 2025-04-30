@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Doga Ege Ozden's Site: New Feedback</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f4f4f4;
+                color: #333;
+                margin: 0;
+                padding: 0;
+            }
+
+            .email-container {
+                max-width: 600px;
+                margin: 20px auto;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h1 {
+                color: #007BFF;
+            }
+
+            p {
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="email-container">
+            <h1>{{ message }}</h1>
+
+            {% if feedback.full_name %}
+            <p><strong>Full Name: </strong>{{ feedback.full_name }}</p>
+            {% endif %}
+            {% if feedback.sender_email %}
+            <p><strong>Sender Email: </strong>{{ feedback.email }}</p>
+            {% endif %}
+            {% if feedback.phone_number %}
+            <p><strong>Phone Number: </strong>{{ feedback.phone_number }}</p>
+            {% endif %}
+            {% if feedback.project_title %}
+            <p><strong>Project Title: </strong>{{ feedback.project_title }}</p>
+            {% endif %}
+            {% if feedback.feedback %}
+            <p><strong>Feedback: </strong>{{ feedback.feedback }}</p>
+            {% endif %}
+            <br>
+
+            <h2>Further Information</h2>
+            {% if feedback.ip_address %}
+            <p><strong>IP Address: </strong>{{ feedback.ip_address }}</p>
+            {% endif %}
+            {% if feedback.user_agent %}
+            <p><strong>User Agent: </strong>{{ feedback.user_agent }}</p>
+            {% endif %}
+            {% if feedback.sending_time %}
+            <p><strong>Sending Time: </strong>{{ feedback.sending_time }}</p>
+            {% endif %}
+            <br>
+
+            <p>This email has been sent by www.dogaegeozden.com</p>
+        </div>
+    </body>
+</html>

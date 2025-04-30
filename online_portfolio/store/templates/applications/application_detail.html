@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block metaDescription %}
+<meta name="description" content="{{ application.meta_description }}">
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/store/application_detail.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>{{ application.title }}</title>
+{% endblock %}
+
+{% block StoreLink %}
+<a class="nav-link dropdown-toggle fw-bold active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{% trans 'Store' %}</a>
+{% endblock %}
+
+{% block mainBox %}
+<div id="ApplicationDetailPageBox">
+
+    <h1>{{ application.title }}</h1>
+
+    <div id="ApplicationDetailPageContentBox">
+        <div id="ApplicationMainContentBox" class="row">
+            {% if application.main_visual_landscape %}
+            <img id="ApplicationMainImage" src="{{ application.main_visual_portrait.url }}" alt="{{ application.main_image_alt }}" class="mx-auto d-block mb-5">
+            {% endif %}
+
+            <p>{{ application.introduction_paragraph }}</p>
+
+            <div id="DownloadButtonBox">
+                {% if application.google_play_download_link %}
+                <form name="googlePlayBtnForm" class="GooglePlayBtnForm" action="{% url 'application-detail' application.slug %}" method='POST'>
+                    {% csrf_token %}
+                    <input type="hidden" name="appChoice" value="{{ application.google_play_download_link }}">
+                    <button id="GooglePlayStoreBadge" type="submit" class="DownloadLink" name="appDownloadBtn"></button>
+                </form>
+                {% endif %}
+    
+                {% if application.apple_store_download_link %}
+                <form name="appleStoreBtnForm" class="AppleStoreBtnForm" action="{% url 'application-detail' application.slug %}" method='POST'>
+                    {% csrf_token %}
+                    <input type="hidden" name="appChoice" value="{{ application.apple_store_download_link }}">
+                    <button id="AppleStoreBadge" type="submit" class="DownloadLink" name="appDownloadBtn"></button>
+                </form>
+                {% endif %}
+
+                {% if application.microsoft_store_download_link %}
+                <form name="microsoftStoreBtnForm" class="MicrosoftStoreBtnForm" action="{% url 'application-detail' application.slug %}" method='POST'>
+                    {% csrf_token %}
+                    <input type="hidden" name="appChoice" value="{{ application.microsoft_store_download_link }}">
+                    <button id="MicrosoftStoreBadge" type="submit" class="DownloadLink" name="appDownloadBtn"></button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row my-5">
+            {% if application.header1 %}
+            <div class="SubSectionBox col-sm-12 col-md-4">
+                <h2 class="mb-3">{{ application.header1 }}</h2>
+                
+                {% if application.image1 %}
+                <img src="{{ application.image1.url }}" alt="{{ application.image_alt1 }}" class="img-fluid mb-3">
+                {% endif %}
+                
+                {% if application.text1 %}
+                <p>{{ application.text1 }}</p>
+                {% endif %}
+            </div>
+            {% endif %}
+    
+            {% if application.header2 %}
+            <div class="SubSectionBox col-sm-12 col-md-4">
+                <h2 class="mb-3">{{ application.header2 }}</h2>
+                
+                {% if application.image2 %}
+                <img src="{{ application.image2.url }}" alt="{{ application.image_alt2 }}" class="img-fluid mb-3">
+                {% endif %}
+                
+                {% if application.text2 %}
+                <p>{{ application.text2 }}</p>
+                {% endif %}
+            </div>
+            {% endif %}
+            
+            {% if application.header3 %}
+            <div class="SubSectionBox col-sm-12 col-md-4">
+                <h2 class="mb-3">{{ application.header3 }}</h2>
+                
+                {% if application.image3 %}
+                <img src="{{ application.image3.url }}" alt="{{ application.image_alt3 }}" class="img-fluid mb-3">
+                {% endif %}
+                
+                {% if application.text3 %}
+                <p>{{ application.text3 }}</p>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javaScriptCodes %}
+<script src="{% static 'js/store/redirect_to_store.js' %}"></script>
+<script>
+    const applicationMainVisual = document.querySelector("#ApplicationMainImage");
+
+    if (screen_width >= 600) {
+        applicationMainVisual.setAttribute("src", "{{ application.main_visual_landscape.url }}");
+    }
+
+    // Redirect users to app stores when they press download buttons
+    {% if application.google_play_download_link %}
+    const googlePlayDownloadBtn = document.querySelector("#GooglePlayStoreBadge");
+    googlePlayDownloadBtn.addEventListener("click", () => redirectToStore("{{ application.google_play_download_link }}&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"));
+    {% endif %}
+
+    {% if application.apple_store_download_link %}
+    const appleStoreDownloadBtn = document.querySelector("#AppleStoreBadge");
+    appleStoreDownloadBtn.addEventListener("click", () => redirectToStore("{{ application.apple_store_download_link }}"));
+    {% endif %}
+
+    {% if application.microsoft_store_download_link %}
+    const microsoftStoreDownloadBtn = document.querySelector("#MicrosoftStoreBadge");
+    microsoftStoreDownloadBtn.addEventListener("click", () => redirectToStore("{{ application.microsoft_store_download_link }}"));
+    {% endif %}
+</script>
+{% endblock %}

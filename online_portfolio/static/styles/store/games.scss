@@ -1,0 +1,61 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+/* MEDIA QUERIES ***************************/
+
+//////////////////////////////
+
+// PHONE
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-phone) {
+
+    #GamesPageBox {
+        @include mixins.standard-page-box-style("Games");
+    }
+
+    #GamesPageContentBox {
+        @include mixins.grid-content-box-style;
+    }
+
+    .card {
+        border-radius: 7px;
+    }
+
+    .card-visual-box {
+        @include mixins.card-visual-box;
+    }
+
+    .card-visual {
+        @include mixins.card-visual;
+    }
+}
+
+
+
+//////////////////////////////
+
+// TABLET
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-tablet) {}
+
+
+
+//////////////////////////////
+
+// DESKTOP/LAPTOP
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-desktop) {}

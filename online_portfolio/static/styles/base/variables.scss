@@ -1,0 +1,61 @@
+//////////////////////////////
+
+// BRAND COLORS
+
+//////////////////////////////
+
+$brand-color-primary: black;
+$brand-color-secondary: #1b3067;
+$brand-color-secondary-hover: #284798;
+$brand-color-tertiary: white;
+$brand-color-process-background: #f9f9f9;
+$brand-color-cookie-notice-background: #171717;
+$brand-color-cookie-notice-btn: #2d85f3;
+$brand-color-cookie-notice-btn-hover: #4593F4;
+$brand-color-accent: rgb(220 53 69 / 85%);
+$brand-color-accent-hover: rgb(220 53 69 / 50%);
+$social-media-box-color: #cccccc45;
+$social-media-button-color-youtube: #d4101c;
+$social-media-button-color-linkedin: #0077b5;
+$social-media-button-color-instagram: #EF233C;
+$social-media-button-color-facebook: #3b5998;
+$social-media-button-color-github: white;
+$social-media-button-color-bag-fill: #f47421;
+$social-media-button-color-twitter-x: white;
+$social-media-button-color-tiktok: pink;
+
+
+
+//////////////////////////////
+
+// FONT FAMILIES
+
+//////////////////////////////
+
+$title-font-family: "Bebas Neue", sans-serif;
+$accent-text-font-family: "Knewave", system-ui;  
+$body-text-font-family: "Lato", sans-serif;
+
+
+
+//////////////////////////////
+
+// ANIMATION DURATIONS
+
+//////////////////////////////
+
+$nav-link-load-time: 600ms;
+$main-section-load-time: 600ms;
+$social-media-box-load: 3000ms;
+
+
+
+//////////////////////////////
+
+// BREAK POINTS
+
+//////////////////////////////
+
+$break-point-phone: 240px;
+$break-point-tablet: 767px;
+$break-point-desktop: 1279px;

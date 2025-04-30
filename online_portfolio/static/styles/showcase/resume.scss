@@ -1,0 +1,144 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+//////////////////////////////
+
+// GLOBAL STYLES
+
+//////////////////////////////
+
+.bi-file-earmark-pdf-fill {
+    color: rgb(255, 61, 170);
+    font-size: 32px;
+    transition: 0.5s ease;
+}
+
+.bi-file-earmark-pdf-fill:hover {
+    color: rgb(39, 253, 245);
+}
+
+.WorkExperienceItem:last-of-type {
+    margin-bottom: 0;
+}
+
+.WorkExperienceItem a {
+    color: rgb(255, 61, 170);
+    transition: 0.5s ease;
+}
+
+.WorkExperienceItem a:hover {
+    text-decoration: none;
+    color: rgb(39, 253, 245);
+}
+
+
+
+/* MEDIA QUERIES ***************************/
+
+//////////////////////////////
+
+// PHONE
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-phone) {
+
+	#ResumePageBox {
+		@include mixins.standard-page-box-style("Certifications");
+	}
+
+	#ResumePageContentBox {
+        @include mixins.standard-content-box-style("Certifications");
+	}
+
+    #About {
+        @include mixins.block-box;
+        margin: auto;
+        text-align: justify;
+        margin-bottom: 50px;
+    }
+
+    #OpenToWork {
+        @include mixins.block-box;
+        margin-bottom: 50px;
+    }
+
+    #Education {
+        @include mixins.block-box;
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 50px;
+        padding: 40px;
+        border-radius: 30px;
+    }
+
+    #About, #OpenToWork, #Education {
+        margin-bottom: 50px;
+    }
+
+    #WorkExperience {
+        @include mixins.block-box;
+        margin-bottom: 50px;
+    }
+
+    .WorkExperienceItem {
+        @include mixins.block-box;
+        margin-bottom: 30px;
+    }
+
+    .ContentWrap1, .ContentWrap2 {
+        @include mixins.block-box;
+        float: left;
+    }
+
+    .ExpImg {
+        border-radius: 4px;
+        height: 26px;
+    }
+}
+
+
+
+//////////////////////////////
+
+// TABLET
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-tablet) {
+
+    #About, #OpenToWork, #Education {
+        margin-bottom: 75px;
+    }
+
+    .WorkExperienceItem {
+        margin-bottom: 50px;
+    }
+}
+
+
+
+//////////////////////////////
+
+// DESKTOP
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-desktop) {
+
+    #About, #OpenToWork, #Education {
+        margin-bottom: 120px;
+    }
+
+    .WorkExperienceItem {
+        margin-bottom: 75px;
+    }
+}

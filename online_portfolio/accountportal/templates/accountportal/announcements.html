@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+<title>{% trans 'Announcements'%}</title>
+{% endblock %}
+
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/accountportal/announcements.css' %}">
+{% endblock %}
+
+{% block mainBox %}
+<div id="AnnouncementsPageBox">
+
+    <h1>{% trans 'ANNOUNCEMENTS'%}</h1>
+    
+    <div id="AnnouncementsPageContentBox">
+        <div class="BackButton mb-5" style="overflow: hidden;">
+            <a type="button" target="_self" class="btn btn-danger btn-lg float-start" href="{% url 'dashboard' %}">{% trans 'Back' %}</a>
+        </div>
+        
+        {% for announcement in all_announcement_objs %}
+        <div class="card mb-5 p-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-body">
+                        <p class="float-end">{{ announcement.create_time }}</p>
+                        <a class="text-black" href="{{ announcement.get_absolute_url }}"><h5 class="card-title fw-bolder d-inline-block text-decoration-underline">{{ announcement.title }}</h5></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-body">
+                        <p class="card-text">{{ announcement.text }}</p>
+                        <p>{{ submit_time }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

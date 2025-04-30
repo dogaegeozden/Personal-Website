@@ -1,0 +1,65 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+/* MEDIA QUERIES ***************************/
+
+//////////////////////////////
+
+// PHONE
+
+//////////////////////////////
+ 
+@media (min-width: vars.$break-point-phone) {
+
+    #AnnouncementsPageBox {
+		@include mixins.standard-page-box-style("Announcements");
+	}
+
+    #AnnouncementsPageContentBox {
+        @include mixins.standard-content-box-style("Announcements");
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .card {
+        border-radius: 7px;
+    }
+
+    .card:first-of-type {
+        margin-top: 20px;
+    }
+
+    .bi-plus-lg {
+        color: black;
+    }
+}
+
+
+
+//////////////////////////////
+
+// TABLET
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-tablet) {}
+
+
+
+//////////////////////////////
+
+// DESKTOP
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-desktop) {}

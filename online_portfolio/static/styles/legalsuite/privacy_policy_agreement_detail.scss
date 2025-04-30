@@ -1,0 +1,59 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+/* MEDIA QUERIES ***************************/
+
+//////////////////////////////
+
+// PHONE
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-phone) {
+
+    #PrivacyPolicyDetailPageBox {
+        @include mixins.standard-page-box-style("PrivacyPolicy");
+    }
+    
+    #PrivacyPolicyDetailContentBox {
+        @include mixins.standard-detail-content-box-style("PrivacyPolicy");
+    }
+
+    #PrivacyPolicyDetailPageBox ol a {
+        text-decoration: none;
+        color: black;
+    }
+    
+    #PrivacyPolicyDetailPageBox ol a:hover {
+        text-decoration: underline;
+        transition: 0.35s ease;
+    }
+}
+
+
+
+//////////////////////////////
+
+// TABLET
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-tablet) {}
+
+
+
+//////////////////////////////
+
+// DESKTOP/LAPTOP
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-desktop) {}

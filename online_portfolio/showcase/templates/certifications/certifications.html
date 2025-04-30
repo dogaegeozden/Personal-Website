@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block metaDescription %}
+<meta name="description" content="{{ all_meta_description_objs.last.text }}">
+{% endblock %}
+
+{% block title %}
+<title>{% trans 'Certifications' %}</title>
+{% endblock %}
+ 
+{% block styleSheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/showcase/certifications.css' %}">
+{% endblock %}
+
+{% block ShowcaseLink %}
+<a class="nav-link dropdown-toggle fw-bold active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{% trans 'Showcase' %}</a>
+{% endblock %}
+
+{% block mainBox %}
+<div id="CertificationsPageBox">
+    <h1>{% trans 'Certificates' %}</h1>
+
+    <div id="CertificationsWallBox">
+
+        {% for certification in all_certification_objs|dictsort:"title" %}
+        {% if certification.digital_copy or certification.digital_copy_url %}
+        <div class="CertificationItem mb-5 px-3" style="float:left;">
+            <h4>{{ certification.title }}</h4>
+            <p><span class="fw-bolder">{% trans 'Issued by:' %}</span> {{ certification.issuer }}</p>
+            {% if certification.issue_date %}
+            <p><span class="fw-bolder">{% trans 'Issue Date:' %}</span> {{ certification.issue_date }}</p>
+            {% else %}
+            <p><span class="fw-bolder">{% trans 'Issue Date:' %}</span> {% trans 'N/A' %}</p>
+            {% endif %}
+            <p><span class="fw-bolder">{% trans 'Expiry Date:' %}</span> {{ certification.expiry_date }}</p>
+            {% if certification.digital_copy_url %}
+            <a href="{{ certification.digital_copy_url }}" target="_blank" class="btn btn-primary">{% trans 'View certificate' %}</a>
+            {% else %}
+            <a href="{{ certification.digital_copy.url }}" target="_blank" class="btn btn-primary">{% trans 'View certificate' %}</a>
+            {% endif %}
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

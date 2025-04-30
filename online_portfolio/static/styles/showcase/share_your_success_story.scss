@@ -1,0 +1,55 @@
+//////////////////////////////
+
+// LIBRARIES
+
+//////////////////////////////
+
+@use "../base/variables.scss" as vars;
+@use "../base/mixins.scss" as mixins;
+
+
+
+/* MEDIA QUERIES ***************************/
+
+//////////////////////////////
+
+// PHONE
+
+//////////////////////////////
+ 
+@media (min-width: vars.$break-point-phone) {
+
+    #ShareYourSuccessStoryPageBox {
+		@include mixins.standard-page-box-style("ShareYourSuccessStory");
+	}
+
+    #ShareYourSuccessStoryPageContentBox {
+        @include mixins.standard-content-box-style("ShareYourSuccessStory");
+    }
+
+    #SuccessStorySharingFormBox {
+        @include mixins.block-box;
+        margin: auto;
+        max-width: 850px;
+    }
+}
+
+
+
+//////////////////////////////
+
+// TABLET
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-tablet) {}
+
+
+
+//////////////////////////////
+
+// DESKTOP
+
+//////////////////////////////
+
+@media (min-width: vars.$break-point-desktop) {}
