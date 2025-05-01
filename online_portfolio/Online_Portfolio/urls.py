@@ -41,7 +41,7 @@ sitemaps = {
 
 urlpatterns = [
     path("robots.txt",TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
-    path('gjtiexjvzaqpiknmbfgjhktesxvnuohjgfde235679126432896678935/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('', include('datacenter.urls')),  # This handles the request without a language prefix
 ]
 
